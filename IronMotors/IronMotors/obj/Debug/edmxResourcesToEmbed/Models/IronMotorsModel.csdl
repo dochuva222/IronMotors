@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IronMotorsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IronMotorsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Car" EntityType="IronMotorsModel.Car" />
+    <EntitySet Name="CarBrand" EntityType="IronMotorsModel.CarBrand" />
+    <EntitySet Name="CarImage" EntityType="IronMotorsModel.CarImage" />
+    <EntitySet Name="Client" EntityType="IronMotorsModel.Client" />
+    <EntitySet Name="sysdiagrams" EntityType="IronMotorsModel.sysdiagrams" />
+    <AssociationSet Name="FK_Car_CarBrand" Association="IronMotorsModel.FK_Car_CarBrand">
+      <End Role="CarBrand" EntitySet="CarBrand" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Client" Association="IronMotorsModel.FK_Car_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarImage_Car" Association="IronMotorsModel.FK_CarImage_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="CarImage" EntitySet="CarImage" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumberPlate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CarBrandId" Type="Int32" Nullable="false" />
+    <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="YearOfIsuue" Type="Int32" Nullable="false" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Car_CarBrand" FromRole="Car" ToRole="CarBrand" />
+    <NavigationProperty Name="Client" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Car" ToRole="Client" />
+    <NavigationProperty Name="CarImage" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="Car" ToRole="CarImage" />
+  </EntityType>
+  <EntityType Name="CarBrand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_CarBrand" FromRole="CarBrand" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="CarImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarId" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="CarImage" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Middlename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Client" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Car_CarBrand">
+    <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="1" />
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarBrand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="CarBrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Client">
+    <End Type="IronMotorsModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarImage_Car">
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1" />
+    <End Type="IronMotorsModel.CarImage" Role="CarImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CarImage">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
