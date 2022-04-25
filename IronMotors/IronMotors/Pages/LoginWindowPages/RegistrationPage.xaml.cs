@@ -39,6 +39,16 @@ namespace IronMotors.Pages
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (App.DB.Client.FirstOrDefault(c => c.PhoneNumber == contextClient.PhoneNumber) != null)
+            {
+                MessageBox.Show("Данный номер уже используется", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (App.DB.Client.FirstOrDefault(c => c.Email == contextClient.Email) != null)
+            {
+                MessageBox.Show("Данная электронная почта уже используется", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             App.DB.Client.Add(contextClient);
             App.DB.SaveChanges();
             NavigationService.GoBack();

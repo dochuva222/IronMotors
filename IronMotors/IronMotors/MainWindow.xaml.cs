@@ -1,4 +1,5 @@
 ﻿using IronMotors.Pages;
+using IronMotors.Pages.MainWindowPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace IronMotors
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new MenuPage());
         }
     }
 }

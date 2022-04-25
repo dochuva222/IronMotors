@@ -1,4 +1,5 @@
-﻿using IronMotors.Models;
+﻿using IronMotors.AppWindows;
+using IronMotors.Models;
 using IronMotors.Models.Metadata;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace IronMotors
     {
         public static IronMotorsEntities DB = new IronMotorsEntities();
         public static Client LoggedClient;
+        public static LoginWindow LoginWindowInstance;
 
         public App()
         {

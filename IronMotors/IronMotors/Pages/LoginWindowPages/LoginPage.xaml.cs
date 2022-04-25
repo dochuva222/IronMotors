@@ -30,16 +30,17 @@ namespace IronMotors.Pages
             var loggedClient = App.DB.Client.FirstOrDefault(c => c.PhoneNumber == TBPhone.Text);
             if (loggedClient == null)
             {
-                MessageBox.Show("Неверный номер телефона");
+                MessageBox.Show("Неверный номер телефона", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (loggedClient.Password != PBPassword.Password)
             {
-                MessageBox.Show("Неверный пароль");
+                MessageBox.Show("Неверный пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             App.LoggedClient = loggedClient;
-            NavigationService.Navigate(new MainPage());
+            new MainWindow().Show();
+            App.LoginWindowInstance.Close();
         }
 
         private void BRegistration_Click(object sender, RoutedEventArgs e)

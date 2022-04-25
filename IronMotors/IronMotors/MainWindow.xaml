@@ -15,9 +15,9 @@
             <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Height="100">
+        <!--<StackPanel Height="100">
             <Label Content="Iron Motors" />
-        </StackPanel>
+        </StackPanel>-->
         <Frame x:Name="MainFrame"
                NavigationUIVisibility="Hidden"
                Grid.Row="1" />

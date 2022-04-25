@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IronMotors.Pages
+namespace IronMotors.Pages.MainWindowPages.ProfilePages
 {
     /// <summary>
-    /// Interaction logic for ResetPasswordPage.xaml
+    /// Interaction logic for CalendarPage.xaml
     /// </summary>
-    public partial class ResetPasswordPage : Page
+    public partial class CalendarPage : Page
     {
-        public ResetPasswordPage()
+        public CalendarPage()
         {
             InitializeComponent();
         }

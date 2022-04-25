@@ -20,7 +20,7 @@ namespace IronMotors.Models.Metadata
         public string PhoneNumber { get; set; }
         [MaxLength(50), Required]
         public string Password { get; set; }
-        [MaxLength(150), Required]
+        [MaxLength(150), Required, EmailAddress]
         public string Email { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -14,10 +14,10 @@
                     VerticalAlignment="Center">
             <TextBlock Text="Номер телефона" />
             <TextBox x:Name="TBPhone"
-                     Width="200" />
+                     Width="200" MaxLength="11"/>
             <TextBlock Text="Пароль" />
             <PasswordBox x:Name="PBPassword"
-                         Width="200" />
+                         Width="200" MaxLength="50"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="BLogin"
                         Content="Войти"

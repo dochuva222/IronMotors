@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Работа\Киямов диплом\IronMotors\IronMotors\App.xaml
-5-1714017985
+10296824747
 22055865225
-20726967581
-181747413446
-MainWindow.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\RegistrationPage.xaml;Pages\ResetPasswordPage.xaml;
+25-1988405232
+191359139779
+AppWindows\LoginWindow.xaml;MainWindow.xaml;Pages\LoginWindowPages\LoginPage.xaml;Pages\MainWindowPages\MenuPage.xaml;Pages\LoginWindowPages\RegistrationPage.xaml;Pages\LoginWindowPages\ResetPasswordPage.xaml;Pages\MainWindowPages\ProfilePage.xaml;Pages\MainWindowPages\ProfilePages\CalendarPage.xaml;Pages\MainWindowPages\ProfilePages\MessagesPage.xaml;Pages\MainWindowPages\ProfilePages\MyDataPage.xaml;
 
 True
 

@@ -1,8 +1,13 @@
 ﻿
 FD:\Работа\Киямов диплом\IronMotors\IronMotors\App.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\AppWindows\LoginWindow.xaml;;
 FD:\Работа\Киямов диплом\IronMotors\IronMotors\MainWindow.xaml;;
-FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\LoginPage.xaml;;
-FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\RegistrationPage.xaml;;
-FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainPage.xaml;;
-FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\ResetPasswordPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\LoginWindowPages\LoginPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainWindowPages\MenuPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\LoginWindowPages\RegistrationPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\LoginWindowPages\ResetPasswordPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainWindowPages\ProfilePage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainWindowPages\ProfilePages\CalendarPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainWindowPages\ProfilePages\MessagesPage.xaml;;
+FD:\Работа\Киямов диплом\IronMotors\IronMotors\Pages\MainWindowPages\ProfilePages\MyDataPage.xaml;;
 
