@@ -20,7 +20,8 @@
                         <StackPanel Width="200">
                             <TextBlock Text="Имя"
                                        Style="{StaticResource TextBlock3}" />
-                            <TextBox Text="{Binding Firstname}" MaxLength="50"/>
+                            <TextBox Text="{Binding Firstname}"
+                                     MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="200">
                             <TextBlock Text="Фамилия"
@@ -70,20 +71,23 @@
                         <StackPanel Width="250">
                             <TextBlock Text="Старый пароль"
                                        Style="{StaticResource TextBlock3}" />
-                            <PasswordBox MaxLength="50" />
+                            <PasswordBox x:Name="PBOldPassword" MaxLength="50" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="250">
                             <TextBlock Text="Новый пароль"
                                        Style="{StaticResource TextBlock3}" />
-                            <PasswordBox MaxLength="50" />
+                            <PasswordBox x:Name="PBNewPassword" MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="250">
                             <TextBlock Text="Повторите новый пароль"
                                        Style="{StaticResource TextBlock3}" />
-                            <PasswordBox MaxLength="50" />
+                            <PasswordBox x:Name="PBRepeatPassword" MaxLength="50" />
                         </StackPanel>
+                        <Button x:Name="BChangePassword"
+                                Content="Изменить пароль"
+                                Click="BChangePassword_Click" />
                     </StackPanel>
                 </StackPanel>
 
