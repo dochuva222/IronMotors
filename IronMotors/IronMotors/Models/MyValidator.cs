@@ -18,7 +18,7 @@ namespace IronMotors.Models
             {
                 foreach (var validationResult in results)
                 {
-                    errorMessage += $"{validationResult.ErrorMessage}";
+                    errorMessage += $"{validationResult.ErrorMessage}\n";
                 }
                 return false;
             }

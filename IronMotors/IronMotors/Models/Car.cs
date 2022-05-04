@@ -18,6 +18,7 @@ namespace IronMotors.Models
         public Car()
         {
             this.CarImage = new HashSet<CarImage>();
+            this.ServiceOrder = new HashSet<ServiceOrder>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace IronMotors.Models
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CarImage> CarImage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceOrder> ServiceOrder { get; set; }
     }
 }

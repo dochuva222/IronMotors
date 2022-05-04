@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace IronMotors.Pages
             App.LoggedClient = loggedClient;
             new MainWindow().Show();
             App.LoginWindowInstance.Close();
+
         }
 
         private void BRegistration_Click(object sender, RoutedEventArgs e)

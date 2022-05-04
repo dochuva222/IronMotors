@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -88,6 +91,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainWindowPages\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +115,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainWindowPages\ProfilePages\CarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainWindowPages\ProfilePages\MessagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\ProfilePages\MyCarsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +140,9 @@
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CarImage.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarService.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
@@ -145,13 +163,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IronMotorsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\CarMetadata.cs" />
     <Compile Include="Models\Metadata\ClientMetadata.cs" />
     <Compile Include="Models\MyValidator.cs" />
+    <Compile Include="Models\ServiceOrder.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Worker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginWindowPages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml.cs">
+      <DependentUpon>MaintenancePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainWindowPages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
@@ -168,8 +196,14 @@
     <Compile Include="Pages\MainWindowPages\ProfilePages\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainWindowPages\ProfilePages\CarPage.xaml.cs">
+      <DependentUpon>CarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainWindowPages\ProfilePages\MessagesPage.xaml.cs">
       <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\ProfilePages\MyCarsPage.xaml.cs">
+      <DependentUpon>MyCarsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainWindowPages\ProfilePages\MyDataPage.xaml.cs">
       <DependentUpon>MyDataPage.xaml</DependentUpon>

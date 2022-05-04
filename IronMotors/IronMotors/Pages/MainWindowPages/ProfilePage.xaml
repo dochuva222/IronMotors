@@ -21,6 +21,9 @@
                 <Button x:Name="BMyProfile"
                         Content="Мои данные"
                         Click="BMyProfile_Click" />
+                <Button x:Name="BMyCars"
+                        Content="Мои авто"
+                        Click="BMyCars_Click" />
                 <Button x:Name="BCalendar"
                         Content="Календарь"
                         Click="BCalendar_Click" />

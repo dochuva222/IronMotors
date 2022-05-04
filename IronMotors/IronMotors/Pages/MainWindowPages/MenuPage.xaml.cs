@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IronMotors.Pages.MainWindowPages.CarServicePages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace IronMotors.Pages.MainWindowPages
 
         private void BMaintenance_Click(object sender, RoutedEventArgs e)
         {
-            //MenuFrame.Navigate(new ProfilePage());
+            MenuFrame.Navigate(new MaintenancePage());
         }
     }
 }

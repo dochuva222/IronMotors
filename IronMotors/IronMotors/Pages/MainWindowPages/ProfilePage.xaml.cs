@@ -41,5 +41,10 @@ namespace IronMotors.Pages.MainWindowPages
         {
             ProfileFrame.Navigate(new MessagesPage());
         }
+
+        private void BMyCars_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileFrame.Navigate(new MyCarsPage());
+        }
     }
 }
