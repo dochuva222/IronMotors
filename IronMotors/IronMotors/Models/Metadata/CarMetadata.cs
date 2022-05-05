@@ -18,6 +18,8 @@ namespace IronMotors.Models.Metadata
         [Required]
         public int YearOfIsuue { get; set; }
         public int ClientId { get; set; }
+        [Required]
+        public int MileageInKilometres { get; set; }
 
         [Required]
         public virtual CarBrand CarBrand { get; set; }
@@ -25,6 +27,8 @@ namespace IronMotors.Models.Metadata
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CarImage> CarImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceOrder> ServiceOrder { get; set; }
+        public virtual ICollection<Maintenance> Maintenance { get; set; }
+
+
     }
 }

@@ -46,3 +46,8 @@ D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\MyCarsPage.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\CarPage.baml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\MyCarsPage.baml
+D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignColors.dll
+D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignColors.pdb
+D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignThemes.Wpf.xml

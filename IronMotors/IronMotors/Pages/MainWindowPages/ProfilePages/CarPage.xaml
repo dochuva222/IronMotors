@@ -26,6 +26,9 @@
             <TextBlock Text="Год выпуска" />
             <ComboBox x:Name="CBYears"
                       SelectedItem="{Binding YearOfIsuue}" />
+            <TextBlock Text="Пробег (км.)" />
+            <TextBox Text="{Binding MileageInKilometres}"
+                     PreviewTextInput="TBMileage_PreviewTextInput" MaxLength="5"/>
             <Button x:Name="BSave"
                     Content="Сохранить"
                     Click="BSave_Click" />
@@ -33,7 +36,8 @@
                     Content="Отмена"
                     Click="BCancel_Click" />
         </StackPanel>
-        <DockPanel x:Name="DPPhotos" Grid.Column="1">
+        <DockPanel x:Name="DPPhotos"
+                   Grid.Column="1">
             <TextBlock Text="Фотографии"
                        DockPanel.Dock="Top" />
             <StackPanel DockPanel.Dock="Bottom"
@@ -54,7 +58,8 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding Image}" />
+                        <Image Source="{Binding Image}"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

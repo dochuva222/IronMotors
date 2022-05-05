@@ -15,17 +15,17 @@
 
                 <StackPanel>
                     <Label Content="Личная информация"
-                           Style="{StaticResource LabelHeader2Bold}" />
+                            />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
                             <TextBlock Text="Имя"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <TextBox Text="{Binding Firstname}"
                                      MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="200">
                             <TextBlock Text="Фамилия"
-                                       Style="{StaticResource TextBlock3}" />
+                                       />
                             <TextBox Text="{Binding Lastname}"
                                      MaxLength="50" />
                         </StackPanel>
@@ -33,13 +33,13 @@
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
                             <TextBlock Text="Отчество"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <TextBox Text="{Binding Middlename}"
                                      MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="200">
                             <TextBlock Text="Дата рождения"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <DatePicker />
                         </StackPanel>
                     </StackPanel>
@@ -47,17 +47,17 @@
 
                 <StackPanel>
                     <Label Content="Контактная информация"
-                           Style="{StaticResource LabelHeader2Bold}" />
+                            />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
                             <TextBlock Text="Почта"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <TextBox Text="{Binding Email}"
                                      MaxLength="150" />
                         </StackPanel>
                         <StackPanel Width="200">
                             <TextBlock Text="Телефон"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <TextBox Text="{Binding PhoneNumber}"
                                      MaxLength="11" />
                         </StackPanel>
@@ -66,23 +66,23 @@
 
                 <StackPanel>
                     <Label Content="Смена пароля"
-                           Style="{StaticResource LabelHeader2Bold}" />
+                            />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="250">
                             <TextBlock Text="Старый пароль"
-                                       Style="{StaticResource TextBlock3}" />
+                                       />
                             <PasswordBox x:Name="PBOldPassword" MaxLength="50" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="250">
                             <TextBlock Text="Новый пароль"
-                                       Style="{StaticResource TextBlock3}" />
+                                        />
                             <PasswordBox x:Name="PBNewPassword" MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="250">
                             <TextBlock Text="Повторите новый пароль"
-                                       Style="{StaticResource TextBlock3}" />
+                                       />
                             <PasswordBox x:Name="PBRepeatPassword" MaxLength="50" />
                         </StackPanel>
                         <Button x:Name="BChangePassword"

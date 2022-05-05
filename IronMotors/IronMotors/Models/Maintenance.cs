@@ -12,7 +12,7 @@ namespace IronMotors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceOrder
+    public partial class Maintenance
     {
         public int Id { get; set; }
         public int CarServiceId { get; set; }

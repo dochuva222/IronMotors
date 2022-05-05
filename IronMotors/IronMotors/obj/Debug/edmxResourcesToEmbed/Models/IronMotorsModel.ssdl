@@ -10,6 +10,7 @@
     <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="YearOfIsuue" Type="int" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="MileageInKilometres" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CarBrand">
     <Key>
@@ -30,7 +31,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Longitude" Type="float" Nullable="false" />
     <Property Name="Latitude" Type="float" Nullable="false" />
@@ -52,11 +53,11 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
-  <EntityType Name="ServiceOrder">
+  <EntityType Name="Maintenance">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CarServiceId" Type="int" Nullable="false" />
     <Property Name="CarId" Type="int" Nullable="false" />
     <Property Name="DateTime" Type="datetime" Nullable="false" />
@@ -75,7 +76,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Middlename" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -119,24 +120,24 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
   </Association>
   <Association Name="FK_ServiceOrder_Car">
     <End Role="Car" Type="Self.Car" Multiplicity="1" />
-    <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ServiceOrder">
+      <Dependent Role="Maintenance">
         <PropertyRef Name="CarId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ServiceOrder_CarService">
     <End Role="CarService" Type="Self.CarService" Multiplicity="1" />
-    <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CarService">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ServiceOrder">
+      <Dependent Role="Maintenance">
         <PropertyRef Name="CarServiceId" />
       </Dependent>
     </ReferentialConstraint>
@@ -159,7 +160,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
     <EntitySet Name="CarImage" EntityType="Self.CarImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CarService" EntityType="Self.CarService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Car_CarBrand" Association="Self.FK_Car_CarBrand">
@@ -176,11 +177,11 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
     </AssociationSet>
     <AssociationSet Name="FK_ServiceOrder_Car" Association="Self.FK_ServiceOrder_Car">
       <End Role="Car" EntitySet="Car" />
-      <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
     </AssociationSet>
     <AssociationSet Name="FK_ServiceOrder_CarService" Association="Self.FK_ServiceOrder_CarService">
       <End Role="CarService" EntitySet="CarService" />
-      <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
     </AssociationSet>
     <AssociationSet Name="FK_Worker_CarService" Association="Self.FK_Worker_CarService">
       <End Role="CarService" EntitySet="CarService" />

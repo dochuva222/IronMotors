@@ -6,7 +6,7 @@
     <EntitySet Name="CarImage" EntityType="IronMotorsModel.CarImage" />
     <EntitySet Name="CarService" EntityType="IronMotorsModel.CarService" />
     <EntitySet Name="Client" EntityType="IronMotorsModel.Client" />
-    <EntitySet Name="ServiceOrder" EntityType="IronMotorsModel.ServiceOrder" />
+    <EntitySet Name="Maintenance" EntityType="IronMotorsModel.Maintenance" />
     <EntitySet Name="sysdiagrams" EntityType="IronMotorsModel.sysdiagrams" />
     <EntitySet Name="Worker" EntityType="IronMotorsModel.Worker" />
     <AssociationSet Name="FK_Car_CarBrand" Association="IronMotorsModel.FK_Car_CarBrand">
@@ -23,11 +23,11 @@
     </AssociationSet>
     <AssociationSet Name="FK_ServiceOrder_Car" Association="IronMotorsModel.FK_ServiceOrder_Car">
       <End Role="Car" EntitySet="Car" />
-      <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
     </AssociationSet>
     <AssociationSet Name="FK_ServiceOrder_CarService" Association="IronMotorsModel.FK_ServiceOrder_CarService">
       <End Role="CarService" EntitySet="CarService" />
-      <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
     </AssociationSet>
     <AssociationSet Name="FK_Worker_CarService" Association="IronMotorsModel.FK_Worker_CarService">
       <End Role="CarService" EntitySet="CarService" />
@@ -44,10 +44,11 @@
     <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="YearOfIsuue" Type="Int32" Nullable="false" />
     <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="MileageInKilometres" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Car_CarBrand" FromRole="Car" ToRole="CarBrand" />
     <NavigationProperty Name="Client" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Car" ToRole="Client" />
     <NavigationProperty Name="CarImage" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="Car" ToRole="CarImage" />
-    <NavigationProperty Name="ServiceOrder" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Car" ToRole="ServiceOrder" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Car" ToRole="Maintenance" />
   </EntityType>
   <EntityType Name="CarBrand">
     <Key>
@@ -70,11 +71,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Longitude" Type="Double" Nullable="false" />
     <Property Name="Latitude" Type="Double" Nullable="false" />
-    <NavigationProperty Name="ServiceOrder" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="CarService" ToRole="ServiceOrder" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="CarService" ToRole="Maintenance" />
     <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="CarService" ToRole="Worker" />
   </EntityType>
   <EntityType Name="Client">
@@ -90,16 +91,16 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Client" ToRole="Car" />
   </EntityType>
-  <EntityType Name="ServiceOrder">
+  <EntityType Name="Maintenance">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CarServiceId" Type="Int32" Nullable="false" />
     <Property Name="CarId" Type="Int32" Nullable="false" />
     <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="ServiceOrder" ToRole="Car" />
-    <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="ServiceOrder" ToRole="CarService" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
+    <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -115,7 +116,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Middlename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -160,24 +161,24 @@
   </Association>
   <Association Name="FK_ServiceOrder_Car">
     <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1" />
-    <End Type="IronMotorsModel.ServiceOrder" Role="ServiceOrder" Multiplicity="*" />
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ServiceOrder">
+      <Dependent Role="Maintenance">
         <PropertyRef Name="CarId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ServiceOrder_CarService">
     <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1" />
-    <End Type="IronMotorsModel.ServiceOrder" Role="ServiceOrder" Multiplicity="*" />
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CarService">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ServiceOrder">
+      <Dependent Role="Maintenance">
         <PropertyRef Name="CarServiceId" />
       </Dependent>
     </ReferentialConstraint>

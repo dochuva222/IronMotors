@@ -30,7 +30,7 @@ namespace IronMotors.Models
         public virtual DbSet<CarImage> CarImage { get; set; }
         public virtual DbSet<CarService> CarService { get; set; }
         public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<ServiceOrder> ServiceOrder { get; set; }
+        public virtual DbSet<Maintenance> Maintenance { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
     }

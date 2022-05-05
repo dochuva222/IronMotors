@@ -41,7 +41,7 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
             NavigationService.Navigate(new CarPage(new Car()));
         }
 
-        private void BEdit_Click(object sender, RoutedEventArgs e)
+        private void LVMyCars_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selectedCar = LVMyCars.SelectedItem as Car;
             if (selectedCar == null)

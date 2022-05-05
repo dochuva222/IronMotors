@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Car">
       <EntityTypeMapping TypeName="IronMotorsModel.Car">
         <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="MileageInKilometres" ColumnName="MileageInKilometres" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="YearOfIsuue" ColumnName="YearOfIsuue" />
           <ScalarProperty Name="Model" ColumnName="Model" />
@@ -53,9 +54,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ServiceOrder">
-      <EntityTypeMapping TypeName="IronMotorsModel.ServiceOrder">
-        <MappingFragment StoreEntitySet="ServiceOrder">
+    <EntitySetMapping Name="Maintenance">
+      <EntityTypeMapping TypeName="IronMotorsModel.Maintenance">
+        <MappingFragment StoreEntitySet="Maintenance">
           <ScalarProperty Name="DateTime" ColumnName="DateTime" />
           <ScalarProperty Name="CarId" ColumnName="CarId" />
           <ScalarProperty Name="CarServiceId" ColumnName="CarServiceId" />

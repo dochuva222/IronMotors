@@ -2,9 +2,11 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +26,7 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
     public partial class CarPage : Page
     {
         Car contextCar;
+        DbPropertyValues oldValues;
         public CarPage(Car car)
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
             Refresh();
             if (contextCar.Id == 0)
                 DPPhotos.IsEnabled = false;
+            if (contextCar.Id != 0)
+                oldValues = App.DB.Entry(contextCar).CurrentValues.Clone();
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
@@ -55,7 +60,8 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
 
         private void BCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            if (oldValues != null)
+                App.DB.Entry(contextCar).CurrentValues.SetValues(oldValues);
             NavigationService.GoBack();
         }
 
@@ -96,6 +102,12 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
             {
                 CBYears.Items.Add(i);
             }
+        }
+
+        private void TBMileage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"[0-9]"))
+                e.Handled = true;
         }
     }
 }

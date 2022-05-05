@@ -17,7 +17,7 @@ namespace IronMotors.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CarService()
         {
-            this.ServiceOrder = new HashSet<ServiceOrder>();
+            this.Maintenance = new HashSet<Maintenance>();
             this.Worker = new HashSet<Worker>();
         }
     
@@ -27,7 +27,7 @@ namespace IronMotors.Models
         public double Latitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceOrder> ServiceOrder { get; set; }
+        public virtual ICollection<Maintenance> Maintenance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Worker> Worker { get; set; }
     }

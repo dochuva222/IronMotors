@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IronMotors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Iron Motors"
-        Height="450"
-        Width="800"
-        MinHeight="450"
-        MinWidth="800">
+        Height="700"
+        Width="1150"
+        MinHeight="700"
+        MinWidth="1150">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
