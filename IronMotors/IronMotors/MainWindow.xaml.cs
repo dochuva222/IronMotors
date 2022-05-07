@@ -25,6 +25,7 @@ namespace IronMotors
         public MainWindow()
         {
             InitializeComponent();
+            App.MainWindowInstance = this;
             MainFrame.Navigate(new MenuPage());
         }
     }

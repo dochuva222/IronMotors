@@ -75,6 +75,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Longitude" Type="Double" Nullable="false" />
     <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="CarService" ToRole="Maintenance" />
     <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="CarService" ToRole="Worker" />
   </EntityType>
@@ -99,6 +100,7 @@
     <Property Name="CarServiceId" Type="Int32" Nullable="false" />
     <Property Name="CarId" Type="Int32" Nullable="false" />
     <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
     <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
   </EntityType>

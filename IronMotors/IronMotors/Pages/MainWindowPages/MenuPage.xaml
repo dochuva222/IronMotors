@@ -10,20 +10,31 @@
       Title="MenuPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
+            <Label Content="Iron Motors" />
+        </StackPanel>
+        <StackPanel Grid.Row="1">
             <Button x:Name="BProfile"
                     Content="Личный кабинет"
                     Click="BProfile_Click" />
             <Button x:Name="BMaintenance"
                     Content="Записаться на сервис"
                     Click="BMaintenance_Click" />
+            <Button x:Name="BLogout"
+                    Content="Выйти"
+                    Click="BLogout_Click" />
         </StackPanel>
         <Frame x:Name="MenuFrame"
                NavigationUIVisibility="Hidden"
-               Grid.Column="1" />
+               Grid.Column="1"
+               Grid.Row="1" />
     </Grid>
 </Page>

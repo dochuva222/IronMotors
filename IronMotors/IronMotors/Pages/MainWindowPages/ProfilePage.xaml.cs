@@ -21,10 +21,10 @@ namespace IronMotors.Pages.MainWindowPages
     /// </summary>
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
+        public ProfilePage(Page navigationPage)
         {
             InitializeComponent();
-            ProfileFrame.Navigate(new MyDataPage());
+            ProfileFrame.Navigate(navigationPage);
         }
 
         private void BMyProfile_Click(object sender, RoutedEventArgs e)

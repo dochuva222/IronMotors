@@ -24,6 +24,12 @@ namespace IronMotors.Pages
         public LoginPage()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.ClientId != 0)
+            {
+                App.LoggedClient = App.DB.Client.FirstOrDefault(c => c.Id == Properties.Settings.Default.ClientId);
+                new MainWindow().Show();
+                App.LoginWindowInstance.Close();
+            }
         }
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
@@ -39,6 +45,8 @@ namespace IronMotors.Pages
                 MessageBox.Show("Неверный пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            Properties.Settings.Default.ClientId = loggedClient.Id;
+            Properties.Settings.Default.Save();
             App.LoggedClient = loggedClient;
             new MainWindow().Show();
             App.LoginWindowInstance.Close();

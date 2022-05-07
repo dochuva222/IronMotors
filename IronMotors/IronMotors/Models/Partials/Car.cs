@@ -23,5 +23,13 @@ namespace IronMotors.Models
                     return null;
             }
         }
+
+        public string CarFullname
+        {
+            get
+            {
+                return $"{this.CarBrand.Name} {this.Model} {this.NumberPlate}";
+            }
+        }
     }
 }

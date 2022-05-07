@@ -25,6 +25,7 @@ namespace IronMotors.Models
         public string Name { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Maintenance> Maintenance { get; set; }

@@ -13,8 +13,11 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <TextBlock Text="Выберите дату и время" />
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Машина: " />
+                    <ComboBox x:Name="CBCars"
+                              DisplayMemberPath="CarFullname"
+                              Width="150" />
                     <TextBlock Text="Дата" />
                     <DatePicker x:Name="DPMaintenance"
                                 SelectedDateChanged="DPMaintenance_SelectedDateChanged"
@@ -24,34 +27,38 @@
                               Width="100" />
                 </StackPanel>
 
-                <TextBlock Text="Выберите сервис" />
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Width="300">
+                    <StackPanel>
+                        <TextBlock Text="Выберите сервис" />
                         <ListView x:Name="LVServices">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
                                         <TextBlock Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Longitude}" />
-                                        <TextBlock Text="{Binding Latitude}" />
+                                        <TextBlock Text="{Binding Address}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackPanel>
-
                     <m:Map x:Name="MainMap"
                            Grid.Column="1"
                            Height="400"
                            Center="55.798888889,49.113888889"
                            ZoomLevel="10">
                     </m:Map>
-                </Grid>
 
+                </Grid>
+                <TextBlock Text="Причина обращения" />
+                <TextBox x:Name="TBDescription"
+                         Height="100"
+                         VerticalScrollBarVisibility="Visible"
+                         AcceptsReturn="True"
+                         MaxLength="500" />
                 <Button x:Name="BRegistrate"
                         Content="Записаться"
                         Click="BRegistrate_Click"

@@ -1,4 +1,6 @@
-﻿using IronMotors.Services;
+﻿using IronMotors.Models;
+using IronMotors.Pages.MainWindowPages.ProfilePages;
+using IronMotors.Services;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Maps.MapControl.WPF.Core;
 using System;
@@ -26,6 +28,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
         public MaintenancePage()
         {
             InitializeComponent();
+            CBCars.ItemsSource = App.DB.Car.Where(c => c.ClientId == App.LoggedClient.Id).ToList();
             DPMaintenance.BlackoutDates.AddDatesInPast();
             LoadPushPins();
             LVServices.ItemsSource = App.DB.CarService.ToList();
@@ -34,7 +37,31 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
 
         private void BRegistrate_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedCar = CBCars.SelectedItem as Car;
+            var selectedDate = DPMaintenance.SelectedDate;
+            var selectedTime = CBTimes.SelectedItem;
+            var selectedService = LVServices.SelectedItem as CarService;
+            var errorMessage = "";
+            if (selectedCar == null)
+                errorMessage += $"Выберите машину\n";
+            if (selectedDate == null)
+                errorMessage += $"Выберите дату\n";
+            if (selectedTime == null)
+                errorMessage += $"Выберите время\n";
+            if (selectedService == null)
+                errorMessage += $"Выберите автосервис\n";
+            if (string.IsNullOrWhiteSpace(TBDescription.Text))
+                errorMessage += $"Опишите причину обращения";
+            if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var newMaintenance = new Maintenance() { CarServiceId = selectedService.Id, DateTime = selectedDate.Value.Add((TimeSpan)selectedTime), CarId = selectedCar.Id, Description = TBDescription.Text };
+            App.DB.Maintenance.Add(newMaintenance);
+            App.DB.SaveChanges();
+            MessageBox.Show("Вы успешно записались", "Успешно", MessageBoxButton.OK);
+            NavigationService.Navigate(new ProfilePage(new CalendarPage()));
         }
 
         private void LoadPushPins()
@@ -42,7 +69,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             foreach (var carService in App.DB.CarService)
             {
                 var layer = new MapLayer();
-                var pushpin = new Pushpin() { Location = new Location(Math.Round(carService.Longitude, 4), Math.Round(carService.Latitude, 4)) };
+                var pushpin = new Pushpin() { Location = new Location(carService.Latitude, carService.Longitude) };
                 layer.Children.Add(pushpin);
                 MainMap.Children.Add(layer);
             }

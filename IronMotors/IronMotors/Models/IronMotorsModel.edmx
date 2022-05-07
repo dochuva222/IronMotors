@@ -40,6 +40,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Longitude" Type="float" Nullable="false" />
           <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -66,6 +67,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
           <Property Name="CarServiceId" Type="int" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -272,6 +274,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Longitude" Type="Double" Nullable="false" />
           <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="CarService" ToRole="Maintenance" />
           <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="CarService" ToRole="Worker" />
         </EntityType>
@@ -296,6 +299,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
           <Property Name="CarServiceId" Type="Int32" Nullable="false" />
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
           <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
         </EntityType>
@@ -431,6 +435,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
           <EntitySetMapping Name="CarService">
             <EntityTypeMapping TypeName="IronMotorsModel.CarService">
               <MappingFragment StoreEntitySet="CarService">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -454,6 +459,7 @@ warning 6013: The table/view 'IronMotors.dbo.CarServiceWorker' does not have a p
           <EntitySetMapping Name="Maintenance">
             <EntityTypeMapping TypeName="IronMotorsModel.Maintenance">
               <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CarServiceId" ColumnName="CarServiceId" />

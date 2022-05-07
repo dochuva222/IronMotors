@@ -6,12 +6,25 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Red.xaml" />
 
+            </ResourceDictionary.MergedDictionaries>
+            <!--<Style x:Key="WindowStyle"
+                   TargetType="Window"
+                   BasedOn="{StaticResource MaterialDesignWindow}">
+                <Setter Property="Background"
+                        Value="{DynamicResource MaterialDesignBackground}" />
+            </Style>-->
+            <!--<Style TargetType="Button"
+                   BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="Background"
+                        Value="Red" />
+            </Style>-->
             <ImageSource x:Key="defaultCarImage">
                 /Resources/defaultCarImage.png
             </ImageSource>
@@ -104,7 +117,7 @@
                         Value="20" />
             </Style>-->
         </ResourceDictionary>
-        
+
 
     </Application.Resources>
 </Application>
