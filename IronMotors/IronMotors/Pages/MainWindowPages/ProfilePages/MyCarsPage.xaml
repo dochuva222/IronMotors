@@ -17,8 +17,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="BAdd"
                             Content="Добавить"
-                            Click="BAdd_Click" 
-                            Background="LightGreen"/>
+                            Click="BAdd_Click" />
                 </StackPanel>
             </StackPanel>
             <ListView x:Name="LVMyCars"

@@ -8,116 +8,50 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Red.xaml" />
-
             </ResourceDictionary.MergedDictionaries>
-            <!--<Style x:Key="WindowStyle"
-                   TargetType="Window"
-                   BasedOn="{StaticResource MaterialDesignWindow}">
-                <Setter Property="Background"
-                        Value="{DynamicResource MaterialDesignBackground}" />
-            </Style>-->
-            <!--<Style TargetType="Button"
-                   BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+            <Style TargetType="TextBlock"
+                   BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
                 <Setter Property="Foreground"
                         Value="White" />
-                <Setter Property="Background"
-                        Value="Red" />
-            </Style>-->
+            </Style>
+            <Style TargetType="TextBox"
+                   BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="Margin"
+                        Value="5" />
+            </Style>
+            <Style TargetType="Button"
+                   BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+                <Setter Property="Margin"
+                        Value="5" />
+                <Setter Property="Padding"
+                        Value="10,0,10,5" />
+            </Style>
+            <Style TargetType="DatePicker"
+                   BasedOn="{StaticResource MaterialDesignDatePicker}">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="Margin"
+                        Value="5" />
+            </Style>
+            <Style TargetType="PasswordBox"
+                   BasedOn="{StaticResource MaterialDesignPasswordBox}">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="Margin"
+                        Value="5" />
+            </Style>
+            <Style TargetType="ComboBox"
+                   BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="Margin"
+                        Value="5" />
+            </Style>
             <ImageSource x:Key="defaultCarImage">
                 /Resources/defaultCarImage.png
             </ImageSource>
-            <!--<Style x:Key="LabelHeader1Bold"
-                   TargetType="Label">
-                <Setter Property="FontSize"
-                        Value="30" />
-                <Setter Property="FontWeight"
-                        Value="Bold" />
-            </Style>
-
-            <Style x:Key="LabelHeader2Bold"
-                   TargetType="Label">
-                <Setter Property="FontSize"
-                        Value="25" />
-                <Setter Property="FontWeight"
-                        Value="Bold" />
-            </Style>
-
-            <Style x:Key="LabelHeader3Bold"
-                   TargetType="Label">
-                <Setter Property="FontSize"
-                        Value="20" />
-                <Setter Property="FontWeight"
-                        Value="Bold" />
-            </Style>
-
-            <Style x:Key="TextBlock1"
-                   TargetType="TextBlock">
-                <Setter Property="Margin"
-                        Value="5" />
-                <Setter Property="FontSize"
-                        Value="30" />
-            </Style>
-
-            <Style x:Key="TextBlock2"
-                   TargetType="TextBlock">
-                <Setter Property="Margin"
-                        Value="5" />
-                <Setter Property="FontSize"
-                        Value="25" />
-            </Style>
-
-            <Style x:Key="TextBlock3"
-                   TargetType="TextBlock">
-                <Setter Property="Margin"
-                        Value="5" />
-                <Setter Property="FontSize"
-                        Value="20" />
-            </Style>
-
-
-            <Style TargetType="TextBlock">
-                <Setter Property="Margin"
-                        Value="5" />
-            </Style>
-
-            <Style TargetType="TextBox">
-                <Setter Property="Margin"
-                        Value="5" />
-                <Setter Property="FontSize"
-                        Value="20" />
-            </Style>
-
-            <Style TargetType="Button">
-                <Setter Property="Margin"
-                        Value="5" />
-            </Style>
-
-            <Style TargetType="DatePicker">
-                <Setter Property="Margin"
-                        Value="5" />
-            </Style>
-
-            <Style TargetType="ComboBox">
-                <Setter Property="Margin"
-                        Value="5" />
-            </Style>
-
-            <Style TargetType="ListView">
-                <Setter Property="Margin"
-                        Value="5" />
-            </Style>
-
-
-            <Style TargetType="PasswordBox">
-                <Setter Property="Margin"
-                        Value="5" />
-                <Setter Property="FontSize"
-                        Value="20" />
-            </Style>-->
         </ResourceDictionary>
-
-
     </Application.Resources>
 </Application>

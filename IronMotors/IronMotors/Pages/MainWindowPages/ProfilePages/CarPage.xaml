@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:IronMotors.Pages.MainWindowPages.ProfilePages"
       mc:Ignorable="d"
       d:DesignHeight="450"
@@ -28,7 +29,9 @@
                       SelectedItem="{Binding YearOfIsuue}" />
             <TextBlock Text="Пробег (км.)" />
             <TextBox Text="{Binding MileageInKilometres}"
-                     PreviewTextInput="TBMileage_PreviewTextInput" MaxLength="5"/>
+                     PreviewTextInput="TBMileage_PreviewTextInput"
+                     MaxLength="5"
+                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
             <Button x:Name="BSave"
                     Content="Сохранить"
                     Click="BSave_Click" />

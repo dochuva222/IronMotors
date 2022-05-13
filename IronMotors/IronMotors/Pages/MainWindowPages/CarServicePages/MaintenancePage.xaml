@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IronMotors.Pages.MainWindowPages.CarServicePages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d"
       d:DesignHeight="450"
@@ -11,7 +12,7 @@
       Title="ServiceRegistrationPage">
 
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Машина: " />
@@ -58,12 +59,13 @@
                          Height="100"
                          VerticalScrollBarVisibility="Visible"
                          AcceptsReturn="True"
-                         MaxLength="500" />
+                         MaxLength="500"
+                         materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" 
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 <Button x:Name="BRegistrate"
                         Content="Записаться"
                         Click="BRegistrate_Click"
-                        HorizontalAlignment="Right"
-                        Background="LightGreen" />
+                        HorizontalAlignment="Right" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

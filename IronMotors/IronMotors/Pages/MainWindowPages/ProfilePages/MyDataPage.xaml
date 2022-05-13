@@ -4,86 +4,82 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:IronMotors.Pages.MainWindowPages.ProfilePages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
       Title="MyDataPage">
 
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-
                 <StackPanel>
-                    <Label Content="Личная информация"
-                            />
+                    <Label Content="Личная информация" />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
-                            <TextBlock Text="Имя"
-                                        />
+                            <TextBlock Text="Имя" />
                             <TextBox Text="{Binding Firstname}"
-                                     MaxLength="50" />
+                                     MaxLength="50"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                         <StackPanel Width="200">
-                            <TextBlock Text="Фамилия"
-                                       />
+                            <TextBlock Text="Фамилия" />
                             <TextBox Text="{Binding Lastname}"
-                                     MaxLength="50" />
+                                     MaxLength="50"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
-                            <TextBlock Text="Отчество"
-                                        />
+                            <TextBlock Text="Отчество" />
                             <TextBox Text="{Binding Middlename}"
-                                     MaxLength="50" />
+                                     MaxLength="50"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                         <StackPanel Width="200">
-                            <TextBlock Text="Дата рождения"
-                                        />
+                            <TextBlock Text="Дата рождения" />
                             <DatePicker />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel>
-                    <Label Content="Контактная информация"
-                            />
+                    <Label Content="Контактная информация" />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="200">
-                            <TextBlock Text="Почта"
-                                        />
+                            <TextBlock Text="Почта" />
                             <TextBox Text="{Binding Email}"
-                                     MaxLength="150" />
+                                     MaxLength="150"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                         <StackPanel Width="200">
-                            <TextBlock Text="Телефон"
-                                        />
+                            <TextBlock Text="Телефон" />
                             <TextBox Text="{Binding PhoneNumber}"
-                                     MaxLength="11" />
+                                     MaxLength="11"
+                                     materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel>
-                    <Label Content="Смена пароля"
-                            />
+                    <Label Content="Смена пароля" />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="250">
-                            <TextBlock Text="Старый пароль"
-                                       />
-                            <PasswordBox x:Name="PBOldPassword" MaxLength="50" />
+                            <TextBlock Text="Старый пароль" />
+                            <PasswordBox x:Name="PBOldPassword"
+                                         MaxLength="50" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="250">
-                            <TextBlock Text="Новый пароль"
-                                        />
-                            <PasswordBox x:Name="PBNewPassword" MaxLength="50" />
+                            <TextBlock Text="Новый пароль" />
+                            <PasswordBox x:Name="PBNewPassword"
+                                         MaxLength="50" />
                         </StackPanel>
                         <StackPanel Width="250">
-                            <TextBlock Text="Повторите новый пароль"
-                                       />
-                            <PasswordBox x:Name="PBRepeatPassword" MaxLength="50" />
+                            <TextBlock Text="Повторите новый пароль" />
+                            <PasswordBox x:Name="PBRepeatPassword"
+                                         MaxLength="50" />
                         </StackPanel>
                         <Button x:Name="BChangePassword"
                                 Content="Изменить пароль"
@@ -94,11 +90,8 @@
                 <Button x:Name="BSave"
                         Content="Сохранить"
                         Click="BSave_Click"
-                        HorizontalAlignment="Right"
-                        Foreground="White"
-                        Background="Blue" />
+                        HorizontalAlignment="Right" />
             </StackPanel>
-
         </ScrollViewer>
     </Grid>
 </Page>

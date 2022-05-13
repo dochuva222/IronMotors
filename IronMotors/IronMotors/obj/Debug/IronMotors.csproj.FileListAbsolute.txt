@@ -6,7 +6,6 @@ D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\Entity
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\EntityFramework.xml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\EntityFramework.SqlServer.xml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\AppWindows\LoginWindow.g.cs
-D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\MainWindow.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\LoginWindowPages\LoginPage.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\MenuPage.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\LoginWindowPages\RegistrationPage.g.cs
@@ -21,7 +20,6 @@ D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\IronMo
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\IronMotors_MarkupCompile.lref
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\App.baml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\AppWindows\LoginWindow.baml
-D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\MainWindow.baml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\LoginWindowPages\LoginPage.baml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\MenuPage.baml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\LoginWindowPages\RegistrationPage.baml
@@ -41,7 +39,6 @@ D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\Microsoft.Maps.MapControl.WPF.xml
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\CarServicePages\MaintenancePage.baml
-D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\IronMotors.csproj.AssemblyReference.cache
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\CarPage.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\MyCarsPage.g.cs
 D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\ProfilePages\CarPage.baml
@@ -51,3 +48,5 @@ D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\Materi
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignColors.pdb
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\AppWindows\MainWindow.g.cs
+D:\Работа\Киямов диплом\IronMotors\IronMotors\obj\Debug\AppWindows\MainWindow.baml
