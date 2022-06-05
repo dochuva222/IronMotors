@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IronMotors.Models.Metadata
 {
+    //метадата это класс который нужен для реализации валидации
+    //свойства берутся копируются из модели 
+    //нужному свойству добавляются аттрибуты Required(обязательное поле) maxlength(максимальная длина строки) и тп.
     public class CarMetadata
     {
         public int Id { get; set; }

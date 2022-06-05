@@ -29,10 +29,10 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
         {
             InitializeComponent();
             CBCars.ItemsSource = App.DB.Car.Where(c => c.ClientId == App.LoggedClient.Id).ToList();
-            DPMaintenance.BlackoutDates.AddDatesInPast();
+            DPMaintenance.BlackoutDates.AddDatesInPast(); //убрать даты в календаре которые уже прошли
             LoadPushPins();
             LVServices.ItemsSource = App.DB.CarService.ToList();
-            MainMap.CredentialsProvider = new ApplicationIdCredentialsProvider(App.BingMapsToken);
+            MainMap.CredentialsProvider = new ApplicationIdCredentialsProvider(App.BingMapsToken); //запись токена для карты, см. App.xaml.cs
         }
 
         private void BRegistrate_Click(object sender, RoutedEventArgs e)
@@ -64,17 +64,18 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             NavigationService.Navigate(new ProfilePage(new CalendarPage()));
         }
 
-        private void LoadPushPins()
+        private void LoadPushPins() //загрузка иконок сервисов для карты
         {
             foreach (var carService in App.DB.CarService)
             {
                 var layer = new MapLayer();
-                var pushpin = new Pushpin() { Location = new Location(carService.Latitude, carService.Longitude) };
+                var pushpin = new Pushpin() { Location = new Location(carService.Latitude, carService.Longitude) }; //pushpin это и есть иконка и для нее требуются координаты, их можно взять в бд 
                 layer.Children.Add(pushpin);
-                MainMap.Children.Add(layer);
+                MainMap.Children.Add(layer); //добавление иконок непосредственно на карту
             }
         }
 
+        //загрузка доступного времени в выпадающий список, с проверкой на свободность
         private void LoadTimes()
         {
             CBTimes.Items.Clear();

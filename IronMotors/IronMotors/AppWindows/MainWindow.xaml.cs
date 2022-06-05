@@ -25,7 +25,7 @@ namespace IronMotors.AppWindows
         public MainWindow()
         {
             InitializeComponent();
-            App.MainWindowInstance = this;
+            App.MainWindowInstance = this; //запись окна на хранение см. App.xaml.cs
             MainFrame.Navigate(new MenuPage());
         }
     }

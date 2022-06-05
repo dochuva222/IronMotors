@@ -23,7 +23,7 @@ namespace IronMotors.AppWindows
         public LoginWindow()
         {
             InitializeComponent();
-            App.LoginWindowInstance = this;
+            App.LoginWindowInstance = this; //запись окна на хранение см. App.xaml.cs
             MainFrame.Navigate(new LoginPage());
         }
     }

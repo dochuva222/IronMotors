@@ -25,9 +25,10 @@ namespace IronMotors.Pages
         public LoginPage()
         {
             InitializeComponent();
+            //Properties.Settings.Default.ClientId это данные о клиенте который последний раз заходил, они сохраняются в приложении, поэтому если id не равен 0 то значит приложение сразу переходит на главное окно, иначе открывается окно регистрации
             if (Properties.Settings.Default.ClientId != 0)
             {
-                App.LoggedClient = App.DB.Client.FirstOrDefault(c => c.Id == Properties.Settings.Default.ClientId);
+                App.LoggedClient = App.DB.Client.FirstOrDefault(c => c.Id == Properties.Settings.Default.ClientId); 
                 new MainWindow().Show();
                 App.LoginWindowInstance.Close();
             }

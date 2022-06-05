@@ -39,10 +39,10 @@ namespace IronMotors.Pages
             }
             var newPassword = Membership.GeneratePassword(10, 3);
 
-            //var from = new MailAddress("ashpalitov@yandex.ru", "askar");
+            //var from = new MailAddress("@yandex.ru", "askar");
             //var to = new MailAddress(userEmail);
             //SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 465);
-            //smtp.Credentials = new NetworkCredential("shpalitov222@gmail.com", "koploptoprop222");
+            //smtp.Credentials = new NetworkCredential("@gmail.com", "");
             //smtp.EnableSsl = true;
             //var message = new MailMessage(from, to);
             //message.Subject = "Восстановление пароля";
@@ -58,10 +58,10 @@ namespace IronMotors.Pages
 
         private async Task SendResetPasswordMessageAsync(string userEmail, string newPassword)
         {
-            var from = new MailAddress("ashpalitov@yandex.ru", "askar");
+            var from = new MailAddress("@yandex.ru", "askar");
             var to = new MailAddress(userEmail);
             SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 25);
-            smtp.Credentials = new NetworkCredential("ashpalitov@yandex.ru", "koploptoprop222");
+            smtp.Credentials = new NetworkCredential("@yandex.ru", "");
             smtp.EnableSsl = true;
             var message = new MailMessage(from, to);
             message.Subject = "Восстановление пароля";

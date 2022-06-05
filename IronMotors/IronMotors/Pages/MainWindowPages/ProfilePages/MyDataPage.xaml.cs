@@ -29,6 +29,7 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
+            //валидация см. MyValidator.cs
             string errorMessage = "";
             if (!MyValidator.Validate(App.LoggedClient, out errorMessage))
             {

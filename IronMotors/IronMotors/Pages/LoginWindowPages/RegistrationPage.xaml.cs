@@ -61,13 +61,13 @@ namespace IronMotors.Pages
 
         private void FullNameTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!Regex.IsMatch(e.Text, @"[А-я]"))
+            if (!Regex.IsMatch(e.Text, @"[А-я]")) //проверка на воод только букв
                 e.Handled = true;
         }
 
         private void PhoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!Regex.IsMatch(e.Text, @"[0-9]"))
+            if (!Regex.IsMatch(e.Text, @"[0-9]")) //проверка на воод только цифр
                 e.Handled = true;
         }
     }

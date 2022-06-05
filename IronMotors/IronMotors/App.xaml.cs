@@ -18,15 +18,15 @@ namespace IronMotors
     /// </summary>
     public partial class App : Application
     {
-        public static IronMotorsEntities DB = new IronMotorsEntities();
-        public static Client LoggedClient;
-        public static LoginWindow LoginWindowInstance;
-        public static MainWindow MainWindowInstance;
-        public static string BingMapsToken = "4avPgdF53ME4SYSkWQBa~tgoNZczGM6VLZ7821dO6dg~Ak1c_TvUfkTSj_NBm1xa_0YdU6PgqfhSSTI9dGhuEVFk8zg2148LPQMo54zVvJnU";
+        public static IronMotorsEntities DB = new IronMotorsEntities(); //подключение к бд
+        public static Client LoggedClient; //залогиненный клиент
+        public static LoginWindow LoginWindowInstance; //для хранения окна логина
+        public static MainWindow MainWindowInstance; //для хранения главного окна 
+        public static string BingMapsToken = "4avPgdF53ME4SYSkWQBa~tgoNZczGM6VLZ7821dO6dg~Ak1c_TvUfkTSj_NBm1xa_0YdU6PgqfhSSTI9dGhuEVFk8zg2148LPQMo54zVvJnU"; //токен который необходим работы карты, карта скачана через Nuget
 
         public App()
         {
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;//обработчик ошибок, обрабатывает все ошибки которые могут возникнуть без вылета приложения
             RegisterAnnotations();
         }
 
@@ -35,7 +35,7 @@ namespace IronMotors
             MessageBox.Show(e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
         }
-
+        //регистрация метадаты смотреть в Caretadata.cs
         private void RegisterAnnotations()
         {
             AddDescriptor<Client, ClientMetadata>();

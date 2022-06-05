@@ -41,7 +41,7 @@ namespace IronMotors.Pages.MainWindowPages
 
         private void BLogout_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.ClientId = 0;
+            Properties.Settings.Default.ClientId = 0; //при выходе из аккаунта сохраненые значения стираются 
             Properties.Settings.Default.Save();
             new LoginWindow().Show();
             App.MainWindowInstance.Close();
