@@ -28,6 +28,7 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            LVMyCars.SelectedItem = null;
             Refresh();
         }
 
@@ -41,13 +42,11 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
             NavigationService.Navigate(new CarPage(new Car()));
         }
 
-        private void LVMyCars_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void LVMyCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedCar = LVMyCars.SelectedItem as Car;
             if (selectedCar == null)
-            {
                 return;
-            }
             NavigationService.Navigate(new CarPage(selectedCar));
         }
     }

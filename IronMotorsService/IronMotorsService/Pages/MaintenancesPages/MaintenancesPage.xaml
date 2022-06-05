@@ -1,0 +1,114 @@
+﻿<Page x:Class="IronMotorsService.Pages.MaintenancesPages.MaintenancesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IronMotorsService.Pages.MaintenancesPages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="MaintenancesPage"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <ListView x:Name="LVMaintenances">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="MIAbout"
+                              Header="Подробнее"
+                              Click="MIAbout_Click" />
+                    <MenuItem x:Name="MIWorkers"
+                              Header="Назначить работников"
+                              Click="MIWorkers_Click" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Дата и время"
+                                    DisplayMemberBinding="{Binding DateTime}" />
+                    <GridViewColumn Header="Машина"
+                                    DisplayMemberBinding="{Binding Car.CarFullname}" />
+                    <GridViewColumn Header="Владелец"
+                                    DisplayMemberBinding="{Binding Car.Client.Fullname}" />
+                    <GridViewColumn Header="Статус"
+                                    DisplayMemberBinding="{Binding MaintenanceStatus.Name}" />
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="BFinish"
+                                            Click="BFinish_Click"
+                                            Margin="0,0,10,0"
+                                            Padding="2">
+                                        <Button.Style>
+                                            <Style TargetType="Button"
+                                                   BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="1">
+                                                        <Setter Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="2">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="3">
+                                                        <Setter Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="4">
+                                                        <Setter Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="/Resources/checkIcon.png"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                    </Button>
+                                    <Button x:Name="BCancel"
+                                            Click="BCancel_Click"
+                                            Padding="2">
+                                        <Button.Style>
+                                            <Style TargetType="Button"
+                                                   BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="1">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="2">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="3">
+                                                        <Setter Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding StatusId}"
+                                                                 Value="4">
+                                                        <Setter Property="Visibility"
+                                                                Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="/Resources/cancelIcon.png"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

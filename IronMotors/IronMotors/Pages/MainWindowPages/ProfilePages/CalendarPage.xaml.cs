@@ -24,5 +24,10 @@ namespace IronMotors.Pages.MainWindowPages.ProfilePages
         {
             InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LVMaintenances.ItemsSource = App.LoggedClient.Car.SelectMany(c => c.Maintenance).ToList();
+        }
     }
 }

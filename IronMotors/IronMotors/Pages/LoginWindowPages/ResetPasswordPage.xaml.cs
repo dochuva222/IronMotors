@@ -49,10 +49,6 @@ namespace IronMotors.Pages
             //message.Body = $"Ваш новый пароль: {newPassword}";
             //smtp.Send(message);
 
-            // ЧЕТ НИХУЯ НЕ ОТПРАВЛЯЕТСЯ
-            // МБ НАДО СМТП ПОМЕНЯТЬ
-            // ИЛИ ХУЙ ЗАБИТЬ
-
             SendResetPasswordMessageAsync(userEmail, newPassword).GetAwaiter();
             user.Password = newPassword;
             App.DB.SaveChanges();

@@ -14,19 +14,20 @@
             <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel 
-                    Height="100">
-            <Label Content="Личный кабинет" />
+        <StackPanel Height="100">
+            <Label Content="Личный кабинет" Style="{StaticResource LableH1}"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="BMyProfile"
                         Content="Мои данные"
-                        Click="BMyProfile_Click" />
+                        Click="BMyProfile_Click" Margin="0,0,10,0"/>
                 <Button x:Name="BMyCars"
                         Content="Мои авто"
-                        Click="BMyCars_Click" />
+                        Click="BMyCars_Click"
+                        Margin="0,0,10,0" />
                 <Button x:Name="BCalendar"
                         Content="Календарь"
-                        Click="BCalendar_Click" />
+                        Click="BCalendar_Click"
+                        Margin="0,0,10,0" />
                 <Button x:Name="BMessages"
                         Content="Уведомления"
                         Click="BMessages_Click" />

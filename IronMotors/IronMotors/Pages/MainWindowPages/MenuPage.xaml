@@ -10,32 +10,31 @@
       Title="MenuPage">
 
     <Grid>
-      
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel >
+
+        <StackPanel Margin="0,0,10,0">
             <Image Source="/Resources/IronMotorsLogo.png"
-                   Width="100"
+                   Width="200"
                    RenderOptions.BitmapScalingMode="Fant"
-                   HorizontalAlignment="Left" />
+                   HorizontalAlignment="Center" />
             <Button x:Name="BProfile"
                     Content="Личный кабинет"
-                    Click="BProfile_Click" />
+                    Click="BProfile_Click"
+                    Margin="0,0,0,10" />
             <Button x:Name="BMaintenance"
                     Content="Записаться на сервис"
-                    Click="BMaintenance_Click" />
+                    Click="BMaintenance_Click"
+                    Margin="0,0,0,10" />
             <Button x:Name="BLogout"
                     Content="Выйти"
                     Click="BLogout_Click" />
         </StackPanel>
-        <Frame 
-            x:Name="MenuFrame"
+        <Frame x:Name="MenuFrame"
                NavigationUIVisibility="Hidden"
                Grid.Column="1"
-               Grid.Row="1" 
-            />
+               Grid.Row="1" />
     </Grid>
 </Page>

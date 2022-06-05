@@ -13,47 +13,50 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <StackPanel>
-                    <Label Content="Личная информация" />
+                <StackPanel Margin="0,0,0,10">
+                    <Label Content="Личная информация" Style="{StaticResource LableH2}"/>
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="200">
-                            <TextBlock Text="Имя" />
+                        <StackPanel Width="200"
+                                    Margin="0,0,10,0">
+                            <Label Content="Имя"
+                                   Style="{StaticResource LableH3}" />
                             <TextBox Text="{Binding Firstname}"
                                      MaxLength="50"
                                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
-                        <StackPanel Width="200">
-                            <TextBlock Text="Фамилия" />
+                        <StackPanel Width="200"
+                                    Margin="0,0,10,0">
+                            <Label Content="Фамилия"
+                                   Style="{StaticResource LableH3}" />
                             <TextBox Text="{Binding Lastname}"
                                      MaxLength="50"
                                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="200">
-                            <TextBlock Text="Отчество" />
+                        <StackPanel Width="200"
+                                    Margin="0,0,10,0">
+                            <Label Content="Отчество"
+                                   Style="{StaticResource LableH3}" />
                             <TextBox Text="{Binding Middlename}"
                                      MaxLength="50"
                                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
-                        <StackPanel Width="200">
-                            <TextBlock Text="Дата рождения" />
-                            <DatePicker />
-                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel>
-                    <Label Content="Контактная информация" />
+                <StackPanel Margin="0,0,0,10">
+                    <Label Content="Контактная информация" Style="{StaticResource LableH2}"/>
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="200">
-                            <TextBlock Text="Почта" />
+                        <StackPanel Width="200"
+                                    Margin="0,0,10,0">
+                            <Label Content="Почта"
+                                   Style="{StaticResource LableH3}" />
                             <TextBox Text="{Binding Email}"
                                      MaxLength="150"
                                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
                         </StackPanel>
                         <StackPanel Width="200">
-                            <TextBlock Text="Телефон" />
+                            <Label Content="Телефон"
+                                   Style="{StaticResource LableH3}" />
                             <TextBox Text="{Binding PhoneNumber}"
                                      MaxLength="11"
                                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
@@ -62,35 +65,38 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <Label Content="Смена пароля" />
+                    <Label Content="Смена пароля"
+                           Style="{StaticResource LableH2}" />
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="250">
-                            <TextBlock Text="Старый пароль" />
+                        <StackPanel Width="200">
+                            <Label Content="Старый пароль"
+                                   Style="{StaticResource LableH3}" />
                             <PasswordBox x:Name="PBOldPassword"
                                          MaxLength="50" />
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Width="250">
-                            <TextBlock Text="Новый пароль" />
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <StackPanel Width="200" Margin="0,0,10,0">
+                            <Label Content="Новый пароль"
+                                   Style="{StaticResource LableH3}" />
                             <PasswordBox x:Name="PBNewPassword"
                                          MaxLength="50" />
                         </StackPanel>
-                        <StackPanel Width="250">
-                            <TextBlock Text="Повторите новый пароль" />
+                        <StackPanel Width="200" >
+                            <Label Content="Повторите пароль"
+                                   Style="{StaticResource LableH3}" />
                             <PasswordBox x:Name="PBRepeatPassword"
                                          MaxLength="50" />
                         </StackPanel>
+                    </StackPanel>
                         <Button x:Name="BChangePassword"
                                 Content="Изменить пароль"
-                                Click="BChangePassword_Click" />
-                    </StackPanel>
+                                Click="BChangePassword_Click" HorizontalAlignment="Left" Margin="0,10,0,0"/>
                 </StackPanel>
 
                 <Button x:Name="BSave"
                         Content="Сохранить"
-                        Click="BSave_Click"
-                        HorizontalAlignment="Right" />
+                        Click="BSave_Click" Margin="0,10,0,0"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -11,62 +11,68 @@
       d:DesignWidth="800"
       Title="ServiceRegistrationPage">
 
-    <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Машина: " />
-                    <ComboBox x:Name="CBCars"
-                              DisplayMemberPath="CarFullname"
-                              Width="150" />
-                    <TextBlock Text="Дата" />
-                    <DatePicker x:Name="DPMaintenance"
-                                SelectedDateChanged="DPMaintenance_SelectedDateChanged"
-                                Width="100" />
-                    <TextBlock Text="Доступное время" />
-                    <ComboBox x:Name="CBTimes"
-                              Width="100" />
-                </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="Запись на автосервис"
+                   Style="{StaticResource LableH1}"
+                   Grid.ColumnSpan="2" />
+            <StackPanel Grid.Row="1" Margin="0,0,10,0">
+                        <Label Content="Машина: " Style="{StaticResource LableH3}"/>
+                        <ComboBox x:Name="CBCars"
+                                  DisplayMemberPath="CarFullname"/>
+                <Label Content="Дата: "
+                       Style="{StaticResource LableH3}" />
+                        <DatePicker x:Name="DPMaintenance"
+                                    SelectedDateChanged="DPMaintenance_SelectedDateChanged"/>
+                <Label Content="Доступное время: "
+                       Style="{StaticResource LableH3}" />
+                <ComboBox x:Name="CBTimes" />
+                
+                <Label Content="Выберите сервис"
+                       Style="{StaticResource LableH3}" />
+                    <ListView x:Name="LVServices">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                <Label Content="{Binding Name}"
+                                       Style="{StaticResource LabelP}" />
+                                <Label Content="{Binding Address}"
+                                       Style="{StaticResource LabelP}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <TextBlock Text="Выберите сервис" />
-                        <ListView x:Name="LVServices">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Name}" />
-                                        <TextBlock Text="{Binding Address}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                    <m:Map x:Name="MainMap"
-                           Grid.Column="1"
-                           Height="400"
-                           Center="55.798888889,49.113888889"
-                           ZoomLevel="10">
-                    </m:Map>
-
-                </Grid>
-                <TextBlock Text="Причина обращения" />
+                <Label Content="Причина обращения"
+                       Style="{StaticResource LableH3}" />
                 <TextBox x:Name="TBDescription"
                          Height="100"
                          VerticalScrollBarVisibility="Visible"
                          AcceptsReturn="True"
                          MaxLength="500"
-                         materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" 
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                         TextWrapping="WrapWithOverflow"
+                         materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Foreground="White"/>
                 <Button x:Name="BRegistrate"
                         Content="Записаться"
                         Click="BRegistrate_Click"
-                        HorizontalAlignment="Right" />
+                        HorizontalAlignment="Right" Margin="0,10,0,0"/>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+            <m:Map x:Name="MainMap"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   Center="55.798888889,49.113888889"
+                   ZoomLevel="10">
+            </m:Map>
+        </Grid>
+    </ScrollViewer>
 </Page>

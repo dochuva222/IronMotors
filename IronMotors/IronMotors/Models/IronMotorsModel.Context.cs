@@ -25,12 +25,16 @@ namespace IronMotors.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Administrator> Administrator { get; set; }
         public virtual DbSet<Car> Car { get; set; }
         public virtual DbSet<CarBrand> CarBrand { get; set; }
         public virtual DbSet<CarImage> CarImage { get; set; }
         public virtual DbSet<CarService> CarService { get; set; }
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<ClientNotification> ClientNotification { get; set; }
         public virtual DbSet<Maintenance> Maintenance { get; set; }
+        public virtual DbSet<MaintenanceStatus> MaintenanceStatus { get; set; }
+        public virtual DbSet<MaintenanceWorker> MaintenanceWorker { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
     }

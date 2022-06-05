@@ -57,7 +57,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            var newMaintenance = new Maintenance() { CarServiceId = selectedService.Id, DateTime = selectedDate.Value.Add((TimeSpan)selectedTime), CarId = selectedCar.Id, Description = TBDescription.Text };
+            var newMaintenance = new Maintenance() { CarServiceId = selectedService.Id, DateTime = selectedDate.Value.Add((TimeSpan)selectedTime), CarId = selectedCar.Id, Description = TBDescription.Text, StatusId = 1 };
             App.DB.Maintenance.Add(newMaintenance);
             App.DB.SaveChanges();
             MessageBox.Show("Вы успешно записались", "Успешно", MessageBoxButton.OK);
