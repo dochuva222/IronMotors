@@ -23,11 +23,6 @@ namespace IronMotors.Models.Metadata
 
         [Required]
         public virtual CarBrand CarBrand { get; set; }
-        public virtual Client Client { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CarImage> CarImage { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Maintenance> Maintenance { get; set; }
 
 
     }

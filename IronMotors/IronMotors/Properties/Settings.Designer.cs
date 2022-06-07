@@ -26,12 +26,12 @@ namespace IronMotors.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ClientId {
+        public int AdministratorId {
             get {
-                return ((int)(this["ClientId"]));
+                return ((int)(this["AdministratorId"]));
             }
             set {
-                this["ClientId"] = value;
+                this["AdministratorId"] = value;
             }
         }
     }

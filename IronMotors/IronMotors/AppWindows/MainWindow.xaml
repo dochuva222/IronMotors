@@ -10,9 +10,9 @@
         mc:Ignorable="d"
         Title="Iron Motors"
         Height="800"
-        Width="1150"
+        Width="1350"
         MinHeight="800"
-        MinWidth="1150"
+        MinWidth="1350"
         Padding="10">
     <Grid>
         <Frame x:Name="MainFrame"

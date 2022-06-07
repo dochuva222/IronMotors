@@ -25,9 +25,9 @@ namespace IronMotors.Pages
         public LoginPage()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.ClientId != 0)
+            if (Properties.Settings.Default.AdministratorId != 0)
             {
-                App.LoggedClient = App.DB.Client.FirstOrDefault(c => c.Id == Properties.Settings.Default.ClientId);
+                App.LoggedAdmin = App.DB.Administrator.FirstOrDefault(c => c.Id == Properties.Settings.Default.AdministratorId);
                 new MainWindow().Show();
                 App.LoginWindowInstance.Close();
             }
@@ -35,33 +35,23 @@ namespace IronMotors.Pages
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
-            var loggedClient = App.DB.Client.FirstOrDefault(c => c.PhoneNumber == TBPhone.Text);
-            if (loggedClient == null)
+            var loggedAdmin = App.DB.Administrator.FirstOrDefault(c => c.Login == TBLogin.Text);
+            if (loggedAdmin == null)
             {
                 MessageBox.Show("Неверный номер телефона", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (loggedClient.Password != PBPassword.Password)
+            if (loggedAdmin.Password != PBPassword.Password)
             {
                 MessageBox.Show("Неверный пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Properties.Settings.Default.ClientId = loggedClient.Id;
+            Properties.Settings.Default.AdministratorId = loggedAdmin.Id;
             Properties.Settings.Default.Save();
-            App.LoggedClient = loggedClient;
+            App.LoggedAdmin = loggedAdmin;
             new MainWindow().Show();
             App.LoginWindowInstance.Close();
 
-        }
-
-        private void BRegistration_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new RegistrationPage());
-        }
-
-        private void ResetPasswordHyperLink_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new ResetPasswordPage());
         }
     }
 }

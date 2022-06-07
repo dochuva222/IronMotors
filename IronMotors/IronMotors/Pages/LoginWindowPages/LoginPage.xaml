@@ -13,29 +13,24 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Label Content="Номер телефона" Style="{StaticResource LableH3}"/>
-            <TextBox x:Name="TBPhone"
+            <Label Content="Логин"
+                   Style="{StaticResource LableH3}" />
+            <TextBox x:Name="TBLogin"
                      Width="200"
                      MaxLength="11"
-                     Text="89999999999"
+                     Text="1"
                      materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" />
-            <Label Content="Пароль" Style="{StaticResource LableH3}"/>
+            <Label Content="Пароль"
+                   Style="{StaticResource LableH3}" />
             <PasswordBox x:Name="PBPassword"
                          Width="200"
                          MaxLength="50"
                          Password="1" />
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Button x:Name="BLogin"
-                        Content="Войти"
-                        Click="BLogin_Click"
-                        IsDefault="True" Margin="0,0,10,10"/>
-                <TextBlock>
-                    <Hyperlink Click="ResetPasswordHyperLink_Click">Забыли пароль?</Hyperlink>
-                </TextBlock>
-            </StackPanel>
-            <Button x:Name="BRegistration"
-                    Content="Зарегистрироваться"
-                    Click="BRegistration_Click" />
+            <Button x:Name="BLogin"
+                    Content="Войти"
+                    Click="BLogin_Click"
+                    IsDefault="True"
+                    Margin="0,10,0,0" />
         </StackPanel>
     </Grid>
 </Page>

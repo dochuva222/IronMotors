@@ -19,7 +19,7 @@ namespace IronMotors
     public partial class App : Application
     {
         public static IronMotorsEntities DB = new IronMotorsEntities();
-        public static Client LoggedClient;
+        public static Administrator LoggedAdmin;
         public static LoginWindow LoginWindowInstance;
         public static MainWindow MainWindowInstance;
         public static string BingMapsToken = "4avPgdF53ME4SYSkWQBa~tgoNZczGM6VLZ7821dO6dg~Ak1c_TvUfkTSj_NBm1xa_0YdU6PgqfhSSTI9dGhuEVFk8zg2148LPQMo54zVvJnU";

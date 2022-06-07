@@ -9,70 +9,98 @@
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
-      Title="ServiceRegistrationPage">
+      Title="ServiceRegistrationPage"
+      Loaded="Page_Loaded">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <Grid x:Name="MainGrid"
+              Background="Gray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Content="Запись на автосервис"
+            <Label x:Name="LHeader"
+                   Content="Заявка на автосервис"
                    Style="{StaticResource LableH1}"
                    Grid.ColumnSpan="2" />
-            <StackPanel Grid.Row="1" Margin="0,0,10,0">
-                        <Label Content="Машина: " Style="{StaticResource LableH3}"/>
-                        <ComboBox x:Name="CBCars"
-                                  DisplayMemberPath="CarFullname"/>
-                <Label Content="Дата: "
-                       Style="{StaticResource LableH3}" />
-                        <DatePicker x:Name="DPMaintenance"
-                                    SelectedDateChanged="DPMaintenance_SelectedDateChanged"/>
-                <Label Content="Доступное время: "
-                       Style="{StaticResource LableH3}" />
-                <ComboBox x:Name="CBTimes" />
-                
-                <Label Content="Выберите сервис"
-                       Style="{StaticResource LableH3}" />
-                    <ListView x:Name="LVServices">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                <Label Content="{Binding Name}"
-                                       Style="{StaticResource LabelP}" />
-                                <Label Content="{Binding Address}"
-                                       Style="{StaticResource LabelP}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+            <StackPanel Grid.Row="1"
+                        Margin="0,0,10,0">
+                <StackPanel Orientation="Horizontal">
+
+                    <Label Content="Клиент:"
+                           Style="{StaticResource LableH3}"
+                           Margin="0,0,10,0" />
+                    <ComboBox x:Name="CBClients"
+                              SelectedItem="{Binding Car.Client}"
+                              IsEditable="True"
+                              IsTextSearchEnabled="True"
+                              DisplayMemberPath="Fullname"
+                              Width="200"
+                              Margin="0,0,10,0"
+                              SelectionChanged="CBClients_SelectionChanged" />
+                    <Label Content="Машина: "
+                           Style="{StaticResource LableH3}"
+                           Margin="0,0,92,0" />
+                    <ComboBox x:Name="CBCars"
+                              DisplayMemberPath="CarFullname"
+                              Width="200"
+                              Margin="0,0,10,0"
+                              SelectedItem="{Binding Car}" />
+                    <Button x:Name="BAddClient"
+                            Content="Зарегестрировать клиента"
+                            Click="BAddClient_Click" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,10">
+                    <Label Content="Дата: "
+                           Style="{StaticResource LableH3}"
+                           Margin="0,0,26,0" />
+                    <DatePicker x:Name="DPMaintenance"
+                                SelectedDateChanged="DPMaintenance_SelectedDateChanged"
+                                HorizontalAlignment="Left"
+                                Width="200"
+                                Margin="0,0,10,0" />
+                    <Label Content="Доступное время: "
+                           Style="{StaticResource LableH3}"
+                           Margin="0,0,10,0" />
+                    <ComboBox x:Name="CBTimes"
+                              Width="200" />
+                </StackPanel>
 
                 <Label Content="Причина обращения"
                        Style="{StaticResource LableH3}" />
                 <TextBox x:Name="TBDescription"
-                         Height="100"
+                         Text="{Binding Description}"
+                         Height="200"
+                         Width="400"
                          VerticalScrollBarVisibility="Visible"
                          AcceptsReturn="True"
                          MaxLength="500"
                          TextWrapping="WrapWithOverflow"
                          materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Foreground="White"/>
-                <Button x:Name="BRegistrate"
-                        Content="Записаться"
-                        Click="BRegistrate_Click"
-                        HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Foreground="White"
+                         HorizontalAlignment="Left" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            Margin="0,10,0,0">
+                    <Button x:Name="BRegistrate"
+                            Content="Создать заявку"
+                            Click="BRegistrate_Click"
+                            Margin="0,0,10,0" />
+                    <Button x:Name="BBack"
+                            Content="Назад"
+                            Click="BBack_Click" />
+                </StackPanel>
+
             </StackPanel>
-            <m:Map x:Name="MainMap"
+            <!--<m:Map x:Name="MainMap"
                    Grid.Column="1"
                    Grid.Row="1"
                    Center="55.798888889,49.113888889"
                    ZoomLevel="10">
-            </m:Map>
+            </m:Map>-->
         </Grid>
     </ScrollViewer>
 </Page>

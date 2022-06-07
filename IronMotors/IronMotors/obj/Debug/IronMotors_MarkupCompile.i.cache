@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Работа\Киямов диплом\IronMotors\IronMotors\App.xaml
-13-222689637
+12-178174263
 22055865225
-38-1119453874
+38-1272338807
 221132644044
-AppWindows\LoginWindow.xaml;AppWindows\MainWindow.xaml;Pages\LoginWindowPages\LoginPage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml;Pages\MainWindowPages\MenuPage.xaml;Pages\LoginWindowPages\RegistrationPage.xaml;Pages\LoginWindowPages\ResetPasswordPage.xaml;Pages\MainWindowPages\ProfilePage.xaml;Pages\MainWindowPages\ProfilePages\CalendarPage.xaml;Pages\MainWindowPages\ProfilePages\CarPage.xaml;Pages\MainWindowPages\ProfilePages\MessagesPage.xaml;Pages\MainWindowPages\ProfilePages\MyCarsPage.xaml;Pages\MainWindowPages\ProfilePages\MyDataPage.xaml;
+AppWindows\LoginWindow.xaml;AppWindows\MainWindow.xaml;Pages\LoginWindowPages\LoginPage.xaml;Pages\MainWindowPages\CarServicePages\AppointWorkersPage.xaml;Pages\MainWindowPages\CarServicePages\FinishMaintenancePage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml;Pages\MainWindowPages\ClientPage.xaml;Pages\MainWindowPages\ClientsPage.xaml;Pages\MainWindowPages\MenuPage.xaml;Pages\LoginWindowPages\RegistrationPage.xaml;Pages\MainWindowPages\CarPage.xaml;
 
-False
+True
 

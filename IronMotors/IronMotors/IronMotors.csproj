@@ -124,11 +124,30 @@
     <Compile Include="Models\MaintenanceWorker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partials\Client.cs" />
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Worker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\CarServicePages\AppointWorkersPage.xaml.cs">
+      <DependentUpon>AppointWorkersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\CarServicePages\FinishMaintenancePage.xaml.cs">
+      <DependentUpon>FinishMaintenancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml.cs">
+      <DependentUpon>MaintenancesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\ClientPage.xaml.cs">
+      <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\CarPage.xaml.cs">
+      <DependentUpon>CarPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\Tools.cs" />
     <Page Include="AppWindows\LoginWindow.xaml">
@@ -154,7 +173,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainWindowPages\CarServicePages\AppointWorkersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\CarServicePages\FinishMaintenancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\ClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\ClientsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,33 +205,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\LoginWindowPages\ResetPasswordPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Pages\MainWindowPages\CarPage.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePages\CalendarPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePages\CarPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePages\MessagesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePages\MyCarsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\ProfilePages\MyDataPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -211,27 +226,6 @@
     </Compile>
     <Compile Include="Pages\LoginWindowPages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\LoginWindowPages\ResetPasswordPage.xaml.cs">
-      <DependentUpon>ResetPasswordPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePages\CalendarPage.xaml.cs">
-      <DependentUpon>CalendarPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePages\CarPage.xaml.cs">
-      <DependentUpon>CarPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePages\MessagesPage.xaml.cs">
-      <DependentUpon>MessagesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePages\MyCarsPage.xaml.cs">
-      <DependentUpon>MyCarsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\ProfilePages\MyDataPage.xaml.cs">
-      <DependentUpon>MyDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -285,6 +279,8 @@
       <DependentUpon>IronMotorsModel.edmx</DependentUpon>
       <LastGenOutput>IronMotorsModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\cancelIcon.png" />
+    <Resource Include="Resources\checkIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
