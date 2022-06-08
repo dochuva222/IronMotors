@@ -24,46 +24,34 @@
                     <Label Content="фильтрация" />
                 </StackPanel>
             </StackPanel>
-
             <ListView x:Name="LVMaintenances">
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem x:Name="MIAbout"
-                                  Header="Подробнее"
-                                  Click="MIAbout_Click" />
-                        <MenuItem x:Name="MIWorkers"
-                                  Header="Назначить работников"
-                                  Click="MIWorkers_Click">
-                            <MenuItem.Style>
-                                <Style TargetType="MenuItem"
-                                       BasedOn="{StaticResource MaterialDesignMenuItem}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding StatusId}"
-                                                     Value="1">
-                                            <Setter Property="IsEnabled"
-                                                    Value="True" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding StatusId}"
-                                                     Value="2">
-                                            <Setter Property="IsEnabled"
-                                                    Value="True" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding StatusId}"
-                                                     Value="3">
-                                            <Setter Property="IsEnabled"
-                                                    Value="False" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding StatusId}"
-                                                     Value="4">
-                                            <Setter Property="IsEnabled"
-                                                    Value="False" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </MenuItem.Style>
-                        </MenuItem>
-                    </ContextMenu>
-                </ListView.ContextMenu>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                        
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding StatusId}"
+                                         Value="1">
+                                <Setter Property="Background"
+                                        Value="LightGray" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding StatusId}"
+                                         Value="2">
+                                <Setter Property="Background"
+                                        Value="LightBlue" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding StatusId}"
+                                         Value="3">
+                                <Setter Property="Background"
+                                        Value="Pink" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding StatusId}"
+                                         Value="4">
+                                <Setter Property="Background"
+                                        Value="LightGreen" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Дата и время"
@@ -74,77 +62,16 @@
                                         DisplayMemberBinding="{Binding Car.Client.Fullname}" />
                         <GridViewColumn Header="Статус"
                                         DisplayMemberBinding="{Binding MaintenanceStatus.Name}" />
+                        <GridViewColumn Header="Сумма"
+                                        DisplayMemberBinding="{Binding ServiceSum}" />
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="BFinish"
-                                                Click="BFinish_Click"
-                                                Margin="0,0,10,0"
-                                                Padding="2">
-                                            <Button.Style>
-                                                <Style TargetType="Button"
-                                                       BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="1">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Collapsed" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="2">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="3">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Collapsed" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="4">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Collapsed" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                            <Image Source="/Resources/checkIcon.png"
-                                                   RenderOptions.BitmapScalingMode="Fant" />
-                                        </Button>
-                                        <Button x:Name="BCancel"
-                                                Click="BCancel_Click"
-                                                Padding="2">
-                                            <Button.Style>
-                                                <Style TargetType="Button"
-                                                       BasedOn="{StaticResource MaterialDesignFlatSecondaryButton}">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="1">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="2">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Visible" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="3">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Collapsed" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding StatusId}"
-                                                                     Value="4">
-                                                            <Setter Property="Visibility"
-                                                                    Value="Collapsed" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                            <Image Source="/Resources/cancelIcon.png"
-                                                   RenderOptions.BitmapScalingMode="Fant" />
-                                        </Button>
+                                    <StackPanel>
+                                        <Button x:Name="BAbout"
+                                                Content="Подробнее"
+                                                Click="BAbout_Click"
+                                                Margin="0,0,0,10" />
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

@@ -28,6 +28,19 @@ namespace IronMotors
         {
             DispatcherUnhandledException += App_DispatcherUnhandledException;//обработчик ошибок, обрабатывает все ошибки которые могут возникнуть без вылета приложения
             RegisterAnnotations();
+            UpdateStatuses();
+        }
+
+        public void UpdateStatuses()
+        {
+            foreach (var maintenance in App.DB.Maintenance.ToList().Where(m => m.DateTime.Date == DateTime.Now.Date && m.StatusId != 3))
+            {
+                if (maintenance.DateTime.TimeOfDay.Add(TimeSpan.FromHours(1)) > DateTime.Now.TimeOfDay)
+                    maintenance.StatusId = 2;
+                if (maintenance.DateTime.TimeOfDay.Add(TimeSpan.FromHours(1)) < DateTime.Now.TimeOfDay)
+                    maintenance.StatusId = 4;
+            }
+            App.DB.SaveChanges();
         }
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -40,6 +53,8 @@ namespace IronMotors
         {
             AddDescriptor<Client, ClientMetadata>();
             AddDescriptor<Car, CarMetadata>();
+            AddDescriptor<Maintenance, MaintenanceMetadata>();
+            AddDescriptor<Worker, WorkerMetadata>();
         }
 
         private void AddDescriptor<T, A>()

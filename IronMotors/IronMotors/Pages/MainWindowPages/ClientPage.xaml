@@ -22,9 +22,8 @@
                 <Label x:Name="LHeader"
                        DockPanel.Dock="Top"
                        Style="{StaticResource LableH2}" />
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Width="200">
+                <StackPanel 
+                            VerticalAlignment="Top">
                     <Label Content="Фамилия"
                            Style="{StaticResource LableH3}" />
                     <TextBox Text="{Binding Lastname}"

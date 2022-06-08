@@ -32,6 +32,10 @@
                     Content="Клиенты"
                     Click="BClients_Click"
                     Margin="0,0,0,10" />
+            <Button x:Name="BWorkers"
+                    Content="Работники"
+                    Click="BWorkers_Click"
+                    Margin="0,0,0,10" />
             <Button x:Name="BLogout"
                     Content="Выйти"
                     Click="BLogout_Click" />

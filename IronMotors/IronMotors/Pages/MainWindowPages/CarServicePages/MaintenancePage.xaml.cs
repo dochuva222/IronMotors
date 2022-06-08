@@ -26,56 +26,73 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
     public partial class MaintenancePage : Page
     {
         Maintenance contextMaintenance;
+        List<MaintenanceService> services = new List<MaintenanceService>();
+        List<MaintenanceWorker> appointedWorkers = new List<MaintenanceWorker>();
         public MaintenancePage(Maintenance maintenance)
         {
             InitializeComponent();
-
-            //DPMaintenance.BlackoutDates.AddDatesInPast(); // ПОПРАВИТЬ
             CBClients.ItemsSource = App.DB.Client.ToList();
+            CBServices.ItemsSource = App.DB.Service.ToList();
             contextMaintenance = maintenance;
             DataContext = contextMaintenance;
-            if(contextMaintenance.Id != 0)
+            services = contextMaintenance.MaintenanceService.ToList();
+            appointedWorkers = contextMaintenance.MaintenanceWorker.ToList();
+            Refresh();
+            RefreshWorkers();
+            if (contextMaintenance.Id != 0)
             {
                 LHeader.Content = "Информация о заявке";
                 DPMaintenance.SelectedDate = contextMaintenance.DateTime.Date;
                 CBTimes.SelectedItem = contextMaintenance.DateTime.TimeOfDay;
                 CBClients.IsEnabled = false;
                 CBCars.IsEnabled = false;
-                BRegistrate.Visibility = Visibility.Collapsed;
                 DPMaintenance.IsEnabled = false;
                 CBTimes.IsEnabled = false;
-                TBDescription.IsEnabled = false;
+                DGServices.IsEnabled = false;
+                SPServicePanel.Visibility = Visibility.Collapsed;
+                BRegistrate.Visibility = Visibility.Collapsed;
                 BAddClient.Visibility = Visibility.Collapsed;
+                CBClients.SelectedItem = contextMaintenance.Car.Client;
+                CBCars.SelectedItem = contextMaintenance.Car;
             }
-            //CBCars.ItemsSource = App.DB.Car.Where(c => c.ClientId == App.LoggedClient.Id).ToList();
+            else
+            {
+                DPMaintenance.BlackoutDates.AddDatesInPast();
+            }
             //LoadPushPins();
             //MainMap.CredentialsProvider = new ApplicationIdCredentialsProvider(App.BingMapsToken);
         }
 
         private void BRegistrate_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCar = CBCars.SelectedItem as Car;
             var selectedDate = DPMaintenance.SelectedDate;
             var selectedTime = CBTimes.SelectedItem;
+            contextMaintenance.Car = CBCars.SelectedItem as Car;
+
             var errorMessage = "";
-            if (selectedCar == null)
-                errorMessage += $"Выберите машину\n";
+            MyValidator.Validate(contextMaintenance, out errorMessage);
             if (selectedDate == null)
                 errorMessage += $"Выберите дату\n";
             if (selectedTime == null)
                 errorMessage += $"Выберите время\n";
+            if (services.Count == 0)
+                errorMessage += $"Необходимо выбрать как минимум одну услугу\n";
+            if(appointedWorkers.Count == 0)
+                errorMessage += $"Необходимо выбрать как минимум одного работника\n";
 
-            if (string.IsNullOrWhiteSpace(TBDescription.Text))
-                errorMessage += $"Опишите причину обращения";
             if (!string.IsNullOrWhiteSpace(errorMessage))
             {
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            var newMaintenance = new Maintenance() { CarServiceId = App.LoggedAdmin.CarServiceId, DateTime = selectedDate.Value.Add((TimeSpan)selectedTime), CarId = selectedCar.Id, Description = TBDescription.Text, StatusId = 1 };
-            App.DB.Maintenance.Add(newMaintenance);
+
+            contextMaintenance.DateTime = selectedDate.Value.Add((TimeSpan)selectedTime);
+            App.DB.Maintenance.Add(contextMaintenance);
+            App.DB.MaintenanceService.AddRange(services);
+            App.DB.MaintenanceWorker.AddRange(appointedWorkers);
             App.DB.SaveChanges();
-            MessageBox.Show("Вы успешно записались", "Успешно", MessageBoxButton.OK);
+            MessageBox.Show("Заявка создана", "Успешно", MessageBoxButton.OK);
+            NavigationService.GoBack();
         }
 
         //private void LoadPushPins()
@@ -91,7 +108,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
 
         private void DPMaintenance_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(contextMaintenance.Id != 0)
+            if (contextMaintenance.Id != 0)
             {
                 CBTimes.Items.Add(contextMaintenance.DateTime.TimeOfDay);
                 CBTimes.SelectedIndex = 0;
@@ -105,6 +122,8 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
                 for (int workHour = 8; workHour <= 20; workHour++)
                 {
                     if (maintenances.FirstOrDefault(m => m.DateTime.Hour == workHour) != null)
+                        continue;
+                    if (selectedDate.Value.AddHours(workHour) < DateTime.Now)
                         continue;
                     CBTimes.Items.Add(TimeSpan.FromHours(workHour));
                 }
@@ -121,6 +140,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             var selectedClient = (sender as ComboBox).SelectedItem as Client;
             if (selectedClient == null)
                 return;
+            CBCars.SelectedItem = null;
             CBCars.ItemsSource = selectedClient.Car.ToList();
         }
 
@@ -132,6 +152,64 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
         private void BBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void BAddService_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedService = CBServices.SelectedItem as Service;
+            if (selectedService == null)
+            {
+                MessageBox.Show("Выберите услугу");
+                return;
+            }
+            services.Add(new MaintenanceService() { Maintenance = contextMaintenance, Service = selectedService });
+            var allowedServices = CBServices.ItemsSource.Cast<Service>().ToList();
+            allowedServices.Remove(selectedService);
+            CBServices.ItemsSource = allowedServices;
+            Refresh();
+        }
+
+
+        private void Refresh()
+        {
+            LSum.Content = services.Sum(s => s.Service.Price);
+            DGServices.ItemsSource = services.ToList();
+        }
+
+        private void BRemoveService_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedService = (sender as Button).DataContext as MaintenanceService;
+            if (selectedService == null)
+                return;
+            services.Remove(selectedService);
+            var allowedServices = CBServices.ItemsSource.Cast<Service>().ToList();
+            allowedServices.Add(selectedService.Service);
+            CBServices.ItemsSource = allowedServices;
+            Refresh();
+        }
+
+        private void RefreshWorkers()
+        {
+            LVAppointedWorkers.ItemsSource = appointedWorkers.ToList();
+            LVAllWorkers.ItemsSource = App.DB.Worker.ToList();
+        }
+
+        private void BAppointWorker_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedWorker = LVAllWorkers.SelectedItem as Worker;
+            if (selectedWorker == null)
+                return;
+            appointedWorkers.Add(new MaintenanceWorker() { Maintenance = contextMaintenance, Worker = selectedWorker });
+            RefreshWorkers();
+        }
+
+        private void BRemoveWorker_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedWorker = LVAppointedWorkers.SelectedItem as MaintenanceWorker;
+            if (selectedWorker == null)
+                return;
+            appointedWorkers.Remove(selectedWorker);
+            RefreshWorkers();
         }
     }
 }

@@ -46,5 +46,11 @@ namespace IronMotors.Pages.MainWindowPages
         {
             MenuFrame.Navigate(new ClientsPage());
         }
+
+        private void BWorkers_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new WorkersPage());
+
+        }
     }
 }

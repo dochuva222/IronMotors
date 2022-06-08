@@ -12,18 +12,13 @@ namespace IronMotors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CarBrand
+    public partial class MaintenanceService
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CarBrand()
-        {
-            this.Model = new HashSet<Model>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int MaintenanceId { get; set; }
+        public int ServiceId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Model> Model { get; set; }
+        public virtual Maintenance Maintenance { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

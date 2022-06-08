@@ -1,0 +1,62 @@
+﻿<Page x:Class="IronMotors.Pages.MainWindowPages.WorkersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IronMotors.Pages.MainWindowPages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Background="{StaticResource MaterialDesignPaper}"
+      Title="WorkersPage"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <DockPanel>
+            <Button x:Name="BAddWorker"
+                    Content="Добавить"
+                    Click="BAddWorker_Click"
+                    DockPanel.Dock="Bottom" />
+            <StackPanel DockPanel.Dock="Top">
+                <Label Content="Работники"
+                       Style="{StaticResource LableH1}" />
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Поиск: "
+                           Style="{StaticResource LableH3}" />
+                    <TextBox x:Name="TBSearch"
+                             TextChanged="TBSearch_TextChanged"
+                             Width="200" />
+                </StackPanel>
+            </StackPanel>
+            <ListView x:Name="LVWorkers"
+                      SelectionChanged="LVWorkers_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="400" Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Photo}" Height="200" RenderOptions.BitmapScalingMode="Fant" />
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                <Label Content="{Binding Fullname}"
+                                       Style="{StaticResource LabelP}" />
+                                <Label Style="{StaticResource LabelP}">
+                                    <Label.Content>
+                                        <AccessText Text="{Binding Speciality, StringFormat='{}Специальность: {0}'}"
+                                                    TextWrapping="WrapWithOverflow" />
+                                    </Label.Content>
+                                </Label>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</Page>

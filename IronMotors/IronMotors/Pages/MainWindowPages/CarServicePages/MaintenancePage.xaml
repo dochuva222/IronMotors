@@ -9,12 +9,12 @@
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
+      Background="{StaticResource MaterialDesignPaper}"
       Title="ServiceRegistrationPage"
       Loaded="Page_Loaded">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid x:Name="MainGrid"
-              Background="Gray">
+        <Grid x:Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
@@ -31,7 +31,6 @@
                            Style="{StaticResource LableH3}"
                            Margin="0,0,10,0" />
                     <ComboBox x:Name="CBClients"
-                              SelectedItem="{Binding Car.Client}"
                               IsEditable="True"
                               IsTextSearchEnabled="True"
                               DisplayMemberPath="Fullname"
@@ -40,12 +39,11 @@
                               SelectionChanged="CBClients_SelectionChanged" />
                     <Label Content="Машина: "
                            Style="{StaticResource LableH3}"
-                           Margin="0,0,92,0" />
+                           Margin="0,0,10,0" />
                     <ComboBox x:Name="CBCars"
                               DisplayMemberPath="CarFullname"
                               Width="200"
-                              Margin="0,0,10,0"
-                              SelectedItem="{Binding Car}" />
+                              Margin="0,0,10,0" />
                     <Button x:Name="BAddClient"
                             Content="Зарегестрировать клиента"
                             Click="BAddClient_Click" />
@@ -60,28 +58,160 @@
                                 HorizontalAlignment="Left"
                                 Width="200"
                                 Margin="0,0,10,0" />
-                    <Label Content="Доступное время: "
+                    <Label Content="Время: "
                            Style="{StaticResource LableH3}"
-                           Margin="0,0,10,0" />
+                           Margin="0,0,29,0" />
                     <ComboBox x:Name="CBTimes"
                               Width="200" />
                 </StackPanel>
+                <StackPanel>
+                    <Label Content="Услуги"
+                           Style="{StaticResource LableH3}" />
+                    <StackPanel Orientation="Horizontal"
+                                x:Name="SPServicePanel">
+                        <ComboBox x:Name="CBServices"
+                                  DisplayMemberPath="Name"
+                                  IsEditable="True"
+                                  IsTextSearchEnabled="True"
+                                  Width="200"
+                                  Margin="0,0,10,0" />
+                        <Button x:Name="BAddService"
+                                Content="Добавить"
+                                Click="BAddService_Click"
+                                Margin="0,0,10,0" />
+                        <Label Content="Общая стоимость: "
+                               Style="{StaticResource LabelP}" />
+                        <Label x:Name="LSum"
+                               Style="{StaticResource LabelP}" />
+                    </StackPanel>
 
-                <Label Content="Причина обращения"
-                       Style="{StaticResource LableH3}" />
-                <TextBox x:Name="TBDescription"
-                         Text="{Binding Description}"
-                         Height="200"
-                         Width="400"
-                         VerticalScrollBarVisibility="Visible"
-                         AcceptsReturn="True"
-                         MaxLength="500"
-                         TextWrapping="WrapWithOverflow"
-                         materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         Foreground="White"
-                         HorizontalAlignment="Left" />
+                    <DataGrid x:Name="DGServices"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              ColumnWidth="*"
+                              Margin="0,10,0,0"
+                              Height="200">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название"
+                                                Binding="{Binding Service.Name}" />
+                            <DataGridTextColumn Header="Стоимость"
+                                                Binding="{Binding Service.Price}" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="BRemoveService"
+                                                Content="Удалить"
+                                                Click="BRemoveService_Click" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Content="Назначение работников"
+                           Style="{StaticResource LableH2}"
+                           Grid.ColumnSpan="3" />
+                    <StackPanel Grid.Column="1"
+                                Grid.Row="2"
+                                VerticalAlignment="Center">
+                        <Button x:Name="BAppointWorker"
+                                Click="BAppointWorker_Click"
+                                Margin="0,0,0,20"
+                                Style="{StaticResource MaterialDesignFlatSecondaryButton}">
+                            <Image Source="/Resources/appointWorkerIcon.png"
+                                   RenderOptions.BitmapScalingMode="Fant" />
+                        </Button>
+                        <Button x:Name="BRemoveWorker"
+                                Click="BRemoveWorker_Click"
+                                Style="{StaticResource MaterialDesignFlatSecondaryButton}">
+                            <Image Source="/Resources/disappointWorkerIcon.png"
+                                   RenderOptions.BitmapScalingMode="Fant" />
+                        </Button>
+                    </StackPanel>
+                    <DockPanel Grid.Row="2">
+                        <Label Content="Назначенные работники"
+                               Style="{StaticResource LableH3}"
+                               DockPanel.Dock="Top"
+                               HorizontalAlignment="Center" />
+                        <ListView x:Name="LVAppointedWorkers" Height="500">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="400"
+                                          Height="200">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Worker.Photo}"
+                                               Height="200"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                        <StackPanel Grid.Column="1"
+                                                    Margin="10,0,0,0">
+                                            <Label Content="{Binding Worker.Fullname}"
+                                                   Style="{StaticResource LabelP}" />
+                                            <Label Style="{StaticResource LabelP}">
+                                                <Label.Content>
+                                                    <AccessText Text="{Binding Worker.Speciality, StringFormat='{}Специальность: {0}'}"
+                                                                TextWrapping="WrapWithOverflow" />
+                                                </Label.Content>
+                                            </Label>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="2"
+                               Grid.Column="2">
+                        <Label Content="Доступные Работники"
+                               Style="{StaticResource LableH3}"
+                               DockPanel.Dock="Top"
+                               HorizontalAlignment="Center" />
+                        <ListView x:Name="LVAllWorkers"
+                                  Height="500">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="400"
+                                          Height="200">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Photo}"
+                                               Height="200"
+                                               RenderOptions.BitmapScalingMode="Fant" />
+                                        <StackPanel Grid.Column="1"
+                                                    Margin="10,0,0,0">
+                                            <Label Content="{Binding Fullname}"
+                                                   Style="{StaticResource LabelP}" />
+                                            <Label Style="{StaticResource LabelP}">
+                                                <Label.Content>
+                                                    <AccessText Text="{Binding Speciality, StringFormat='{}Специальность: {0}'}"
+                                                                TextWrapping="WrapWithOverflow" />
+                                                </Label.Content>
+                                            </Label>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+                </Grid>
+
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left"
                             Margin="0,10,0,0">

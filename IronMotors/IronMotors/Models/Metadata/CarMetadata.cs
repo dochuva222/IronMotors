@@ -15,18 +15,10 @@ namespace IronMotors.Models.Metadata
         public int Id { get; set; }
         [Required]
         public string NumberPlate { get; set; }
-        public int CarBrandId { get; set; }
-        [Required, MaxLength(50)]
-        public string Model { get; set; }
         [Required]
-        public int YearOfIsuue { get; set; }
-        public int ClientId { get; set; }
-        [Required]
-        public int MileageInKilometres { get; set; }
+        public int YearOfIssue { get; set; }
 
         [Required]
-        public virtual CarBrand CarBrand { get; set; }
-
-
+        public virtual Model Model { get; set; }
     }
 }

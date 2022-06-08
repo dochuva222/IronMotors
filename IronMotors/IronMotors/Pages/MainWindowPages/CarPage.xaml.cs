@@ -30,30 +30,39 @@ namespace IronMotors.Pages.MainWindowPages
         public CarPage(Car car)
         {
             InitializeComponent();
+
             CBBrands.ItemsSource = App.DB.CarBrand.ToList();
             LoadYears();
             contextCar = car;
             DataContext = contextCar;
-            Refresh();
-            if (contextCar.Id == 0)
-                DPPhotos.IsEnabled = false;
+            //if (contextCar.Id == 0)
+            //    DPPhotos.IsEnabled = false;
             if (contextCar.Id != 0)
+            {
+                LHeader.Content = "Редактированание автомобиля";
+                CBBrands.SelectedItem = car.Model.CarBrand;
+                CBModels.ItemsSource = App.DB.Model.Where(m => m.CarBrandId == contextCar.Model.CarBrandId).ToList();
+                CBModels.SelectedItem = car.Model;
                 oldValues = App.DB.Entry(contextCar).CurrentValues.Clone();
+                Refresh();
+            }
+            else
+            {
+                LHeader.Content = "Добавление автомобиля";
+            }
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
             string errorMessage = "";
+            contextCar.Model = CBModels.SelectedItem as Model;
             if (!MyValidator.Validate(contextCar, out errorMessage))
             {
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (contextCar.Id == 0)
-            {
-                //contextCar.ClientId = App.LoggedClient.Id;
                 App.DB.Car.Add(contextCar);
-            }
             App.DB.SaveChanges();
             NavigationService.GoBack();
         }
@@ -72,8 +81,7 @@ namespace IronMotors.Pages.MainWindowPages
             {
                 var carImage = new CarImage() { CarId = contextCar.Id };
                 carImage.Image = File.ReadAllBytes(dialog.FileName);
-                App.DB.CarImage.Add(carImage);
-                App.DB.SaveChanges();
+                contextCar.CarImage.Add(carImage);
                 Refresh();
             }
         }
@@ -93,7 +101,7 @@ namespace IronMotors.Pages.MainWindowPages
 
         private void Refresh()
         {
-            LVCarImages.ItemsSource = App.DB.CarImage.Where(c => c.CarId == contextCar.Id).ToList();
+            LVCarImages.ItemsSource = contextCar.CarImage.ToList();
         }
 
         private void LoadYears()
@@ -108,6 +116,15 @@ namespace IronMotors.Pages.MainWindowPages
         {
             if (!Regex.IsMatch(e.Text, @"[0-9]"))
                 e.Handled = true;
+        }
+
+        private void CBBrands_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedBrand = CBBrands.SelectedItem as CarBrand;
+            if (selectedBrand == null)
+                return;
+            CBModels.SelectedItem = null;
+            CBModels.ItemsSource = App.DB.Model.Where(m => m.CarBrandId == selectedBrand.Id).ToList();
         }
     }
 }

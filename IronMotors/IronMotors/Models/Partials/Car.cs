@@ -30,7 +30,7 @@ namespace IronMotors.Models
         {
             get
             {
-                return $"{this.CarBrand.Name} {this.Model} {this.NumberPlate}";
+                return $"{this.Model.CarBrand.Name} {this.Model.Name} {this.NumberPlate}";
             }
         }
     }

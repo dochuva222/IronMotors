@@ -12,7 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Middlename" Type="nvarchar" MaxLength="50" />
+          <Property Name="Middlename" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CarServiceId" Type="int" Nullable="false" />
@@ -23,11 +23,9 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumberPlate" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CarBrandId" Type="int" Nullable="false" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="YearOfIsuue" Type="int" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="MileageInKilometres" Type="int" Nullable="false" />
+          <Property Name="YearOfIssue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CarBrand">
           <Key>
@@ -80,8 +78,15 @@
           <Property Name="CarServiceId" Type="int" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaintenanceService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaintenanceId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MaintenanceStatus">
           <Key>
@@ -97,6 +102,22 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaintenanceId" Type="int" Nullable="false" />
           <Property Name="WorkerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarBrandId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -115,8 +136,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Middlename" Type="nvarchar" MaxLength="50" />
           <Property Name="CarServiceId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="image" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <Association Name="FK_Administrator_CarService">
           <End Role="CarService" Type="Self.CarService" Multiplicity="1" />
@@ -130,18 +152,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Car_CarBrand">
-          <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="1" />
-          <End Role="Car" Type="Self.Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CarBrand">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="CarBrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Car_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
@@ -151,6 +161,18 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -190,6 +212,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MaintenanceService_Maintenance">
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="1" />
+          <End Role="MaintenanceService" Type="Self.MaintenanceService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maintenance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintenanceService">
+              <PropertyRef Name="MaintenanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaintenanceService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="MaintenanceService" Type="Self.MaintenanceService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintenanceService">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MaintenanceWorker_Maintenance">
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="1" />
           <End Role="MaintenanceWorker" Type="Self.MaintenanceWorker" Multiplicity="*" />
@@ -211,6 +257,18 @@
             </Principal>
             <Dependent Role="MaintenanceWorker">
               <PropertyRef Name="WorkerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_CarBrand">
+          <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="CarBrandId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,20 +317,23 @@
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientNotification" EntityType="Self.ClientNotification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaintenanceService" EntityType="Self.MaintenanceService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaintenanceStatus" EntityType="Self.MaintenanceStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaintenanceWorker" EntityType="Self.MaintenanceWorker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Administrator_CarService" Association="Self.FK_Administrator_CarService">
             <End Role="CarService" EntitySet="CarService" />
             <End Role="Administrator" EntitySet="Administrator" />
           </AssociationSet>
-          <AssociationSet Name="FK_Car_CarBrand" Association="Self.FK_Car_CarBrand">
-            <End Role="CarBrand" EntitySet="CarBrand" />
-            <End Role="Car" EntitySet="Car" />
-          </AssociationSet>
           <AssociationSet Name="FK_Car_Client" Association="Self.FK_Car_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Model" Association="Self.FK_Car_Model">
+            <End Role="Model" EntitySet="Model" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_CarImage_Car" Association="Self.FK_CarImage_Car">
@@ -287,6 +348,14 @@
             <End Role="MaintenanceStatus" EntitySet="MaintenanceStatus" />
             <End Role="Maintenance" EntitySet="Maintenance" />
           </AssociationSet>
+          <AssociationSet Name="FK_MaintenanceService_Maintenance" Association="Self.FK_MaintenanceService_Maintenance">
+            <End Role="Maintenance" EntitySet="Maintenance" />
+            <End Role="MaintenanceService" EntitySet="MaintenanceService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaintenanceService_Service" Association="Self.FK_MaintenanceService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="MaintenanceService" EntitySet="MaintenanceService" />
+          </AssociationSet>
           <AssociationSet Name="FK_MaintenanceWorker_Maintenance" Association="Self.FK_MaintenanceWorker_Maintenance">
             <End Role="Maintenance" EntitySet="Maintenance" />
             <End Role="MaintenanceWorker" EntitySet="MaintenanceWorker" />
@@ -294,6 +363,10 @@
           <AssociationSet Name="FK_MaintenanceWorker_Worker" Association="Self.FK_MaintenanceWorker_Worker">
             <End Role="Worker" EntitySet="Worker" />
             <End Role="MaintenanceWorker" EntitySet="MaintenanceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_CarBrand" Association="Self.FK_Model_CarBrand">
+            <End Role="CarBrand" EntitySet="CarBrand" />
+            <End Role="Model" EntitySet="Model" />
           </AssociationSet>
           <AssociationSet Name="FK_ServiceOrder_Car" Association="Self.FK_ServiceOrder_Car">
             <End Role="Car" EntitySet="Car" />
@@ -321,20 +394,23 @@
           <EntitySet Name="Client" EntityType="IronMotorsModel.Client" />
           <EntitySet Name="ClientNotification" EntityType="IronMotorsModel.ClientNotification" />
           <EntitySet Name="Maintenance" EntityType="IronMotorsModel.Maintenance" />
+          <EntitySet Name="MaintenanceService" EntityType="IronMotorsModel.MaintenanceService" />
           <EntitySet Name="MaintenanceStatus" EntityType="IronMotorsModel.MaintenanceStatus" />
           <EntitySet Name="MaintenanceWorker" EntityType="IronMotorsModel.MaintenanceWorker" />
+          <EntitySet Name="Model" EntityType="IronMotorsModel.Model" />
+          <EntitySet Name="Service" EntityType="IronMotorsModel.Service" />
           <EntitySet Name="sysdiagrams" EntityType="IronMotorsModel.sysdiagrams" />
           <EntitySet Name="Worker" EntityType="IronMotorsModel.Worker" />
           <AssociationSet Name="FK_Administrator_CarService" Association="IronMotorsModel.FK_Administrator_CarService">
             <End Role="CarService" EntitySet="CarService" />
             <End Role="Administrator" EntitySet="Administrator" />
           </AssociationSet>
-          <AssociationSet Name="FK_Car_CarBrand" Association="IronMotorsModel.FK_Car_CarBrand">
-            <End Role="CarBrand" EntitySet="CarBrand" />
-            <End Role="Car" EntitySet="Car" />
-          </AssociationSet>
           <AssociationSet Name="FK_Car_Client" Association="IronMotorsModel.FK_Car_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Model" Association="IronMotorsModel.FK_Car_Model">
+            <End Role="Model" EntitySet="Model" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK_CarImage_Car" Association="IronMotorsModel.FK_CarImage_Car">
@@ -344,6 +420,10 @@
           <AssociationSet Name="FK_ServiceOrder_Car" Association="IronMotorsModel.FK_ServiceOrder_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="Maintenance" EntitySet="Maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_CarBrand" Association="IronMotorsModel.FK_Model_CarBrand">
+            <End Role="CarBrand" EntitySet="CarBrand" />
+            <End Role="Model" EntitySet="Model" />
           </AssociationSet>
           <AssociationSet Name="FK_ServiceOrder_CarService" Association="IronMotorsModel.FK_ServiceOrder_CarService">
             <End Role="CarService" EntitySet="CarService" />
@@ -361,9 +441,17 @@
             <End Role="MaintenanceStatus" EntitySet="MaintenanceStatus" />
             <End Role="Maintenance" EntitySet="Maintenance" />
           </AssociationSet>
+          <AssociationSet Name="FK_MaintenanceService_Maintenance" Association="IronMotorsModel.FK_MaintenanceService_Maintenance">
+            <End Role="Maintenance" EntitySet="Maintenance" />
+            <End Role="MaintenanceService" EntitySet="MaintenanceService" />
+          </AssociationSet>
           <AssociationSet Name="FK_MaintenanceWorker_Maintenance" Association="IronMotorsModel.FK_MaintenanceWorker_Maintenance">
             <End Role="Maintenance" EntitySet="Maintenance" />
             <End Role="MaintenanceWorker" EntitySet="MaintenanceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaintenanceService_Service" Association="IronMotorsModel.FK_MaintenanceService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="MaintenanceService" EntitySet="MaintenanceService" />
           </AssociationSet>
           <AssociationSet Name="FK_MaintenanceWorker_Worker" Association="IronMotorsModel.FK_MaintenanceWorker_Worker">
             <End Role="Worker" EntitySet="Worker" />
@@ -377,7 +465,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Middlename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CarServiceId" Type="Int32" Nullable="false" />
@@ -389,13 +477,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NumberPlate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CarBrandId" Type="Int32" Nullable="false" />
-          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="YearOfIsuue" Type="Int32" Nullable="false" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="MileageInKilometres" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Car_CarBrand" FromRole="Car" ToRole="CarBrand" />
+          <Property Name="YearOfIssue" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Car" ToRole="Client" />
+          <NavigationProperty Name="Model" Relationship="IronMotorsModel.FK_Car_Model" FromRole="Car" ToRole="Model" />
           <NavigationProperty Name="CarImage" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="Car" ToRole="CarImage" />
           <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Car" ToRole="Maintenance" />
         </EntityType>
@@ -405,7 +491,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_CarBrand" FromRole="CarBrand" ToRole="Car" />
+          <NavigationProperty Name="Model" Relationship="IronMotorsModel.FK_Model_CarBrand" FromRole="CarBrand" ToRole="Model" />
         </EntityType>
         <EntityType Name="CarImage">
           <Key>
@@ -458,12 +544,22 @@
           <Property Name="CarServiceId" Type="Int32" Nullable="false" />
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
           <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
           <NavigationProperty Name="MaintenanceStatus" Relationship="IronMotorsModel.FK_Maintenance_MaintenanceStatus" FromRole="Maintenance" ToRole="MaintenanceStatus" />
+          <NavigationProperty Name="MaintenanceService" Relationship="IronMotorsModel.FK_MaintenanceService_Maintenance" FromRole="Maintenance" ToRole="MaintenanceService" />
           <NavigationProperty Name="MaintenanceWorker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Maintenance" FromRole="Maintenance" ToRole="MaintenanceWorker" />
+        </EntityType>
+        <EntityType Name="MaintenanceService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaintenanceId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_MaintenanceService_Maintenance" FromRole="MaintenanceService" ToRole="Maintenance" />
+          <NavigationProperty Name="Service" Relationship="IronMotorsModel.FK_MaintenanceService_Service" FromRole="MaintenanceService" ToRole="Service" />
         </EntityType>
         <EntityType Name="MaintenanceStatus">
           <Key>
@@ -483,6 +579,25 @@
           <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_MaintenanceWorker_Maintenance" FromRole="MaintenanceWorker" ToRole="Maintenance" />
           <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Worker" FromRole="MaintenanceWorker" ToRole="Worker" />
         </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarBrandId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Model" FromRole="Model" ToRole="Car" />
+          <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Model_CarBrand" FromRole="Model" ToRole="CarBrand" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="MaintenanceService" Relationship="IronMotorsModel.FK_MaintenanceService_Service" FromRole="Service" ToRole="MaintenanceService" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -500,8 +615,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CarServiceId" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Speciality" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="Worker" ToRole="CarService" />
           <NavigationProperty Name="MaintenanceWorker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Worker" FromRole="Worker" ToRole="MaintenanceWorker" />
         </EntityType>
@@ -517,18 +633,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Car_CarBrand">
-          <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="1" />
-          <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CarBrand">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="CarBrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Car_Client">
           <End Type="IronMotorsModel.Client" Role="Client" Multiplicity="1" />
           <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
@@ -538,6 +642,18 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Model">
+          <End Type="IronMotorsModel.Model" Role="Model" Multiplicity="1" />
+          <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -562,6 +678,18 @@
             </Principal>
             <Dependent Role="Maintenance">
               <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_CarBrand">
+          <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="1" />
+          <End Type="IronMotorsModel.Model" Role="Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="CarBrandId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,6 +741,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MaintenanceService_Maintenance">
+          <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1" />
+          <End Type="IronMotorsModel.MaintenanceService" Role="MaintenanceService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maintenance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintenanceService">
+              <PropertyRef Name="MaintenanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MaintenanceWorker_Maintenance">
           <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1" />
           <End Type="IronMotorsModel.MaintenanceWorker" Role="MaintenanceWorker" Multiplicity="*" />
@@ -622,6 +762,18 @@
             </Principal>
             <Dependent Role="MaintenanceWorker">
               <PropertyRef Name="MaintenanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaintenanceService_Service">
+          <End Type="IronMotorsModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="IronMotorsModel.MaintenanceService" Role="MaintenanceService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaintenanceService">
+              <PropertyRef Name="ServiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -659,11 +811,9 @@
           <EntitySetMapping Name="Car">
             <EntityTypeMapping TypeName="IronMotorsModel.Car">
               <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="MileageInKilometres" ColumnName="MileageInKilometres" />
+                <ScalarProperty Name="YearOfIssue" ColumnName="YearOfIssue" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="YearOfIsuue" ColumnName="YearOfIsuue" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="CarBrandId" ColumnName="CarBrandId" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
                 <ScalarProperty Name="NumberPlate" ColumnName="NumberPlate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -721,10 +871,18 @@
             <EntityTypeMapping TypeName="IronMotorsModel.Maintenance">
               <MappingFragment StoreEntitySet="Maintenance">
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CarServiceId" ColumnName="CarServiceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaintenanceService">
+            <EntityTypeMapping TypeName="IronMotorsModel.MaintenanceService">
+              <MappingFragment StoreEntitySet="MaintenanceService">
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="MaintenanceId" ColumnName="MaintenanceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -746,6 +904,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="IronMotorsModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="CarBrandId" ColumnName="CarBrandId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="IronMotorsModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="IronMotorsModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -760,8 +936,9 @@
           <EntitySetMapping Name="Worker">
             <EntityTypeMapping TypeName="IronMotorsModel.Worker">
               <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="CarServiceId" ColumnName="CarServiceId" />
-                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
                 <ScalarProperty Name="Lastname" ColumnName="Lastname" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

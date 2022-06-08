@@ -118,24 +118,31 @@
     <Compile Include="Models\Maintenance.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MaintenanceService.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MaintenanceStatus.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MaintenanceWorker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\MaintenanceMetadata.cs" />
+    <Compile Include="Models\Metadata\WorkerMetadata.cs" />
+    <Compile Include="Models\Model.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Partials\Client.cs" />
+    <Compile Include="Models\Partials\Maintenance.cs" />
+    <Compile Include="Models\Partials\Worker.cs" />
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>IronMotorsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Worker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\CarServicePages\AppointWorkersPage.xaml.cs">
-      <DependentUpon>AppointWorkersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainWindowPages\CarServicePages\FinishMaintenancePage.xaml.cs">
-      <DependentUpon>FinishMaintenancePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml.cs">
       <DependentUpon>MaintenancesPage.xaml</DependentUpon>
@@ -148,6 +155,12 @@
     </Compile>
     <Compile Include="Pages\MainWindowPages\CarPage.xaml.cs">
       <DependentUpon>CarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\WorkerPage.xaml.cs">
+      <DependentUpon>WorkerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainWindowPages\WorkersPage.xaml.cs">
+      <DependentUpon>WorkersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\Tools.cs" />
     <Page Include="AppWindows\LoginWindow.xaml">
@@ -170,14 +183,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\LoginWindowPages\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\CarServicePages\AppointWorkersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainWindowPages\CarServicePages\FinishMaintenancePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +213,14 @@
     <Page Include="Pages\MainWindowPages\CarPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MainWindowPages\WorkerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\WorkersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +292,8 @@
       <DependentUpon>IronMotorsModel.edmx</DependentUpon>
       <LastGenOutput>IronMotorsModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\disappointWorkerIcon.png" />
+    <Resource Include="Resources\appointWorkerIcon.png" />
     <Resource Include="Resources\cancelIcon.png" />
     <Resource Include="Resources\checkIcon.png" />
   </ItemGroup>

@@ -17,6 +17,7 @@ namespace IronMotors.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Maintenance()
         {
+            this.MaintenanceService = new HashSet<MaintenanceService>();
             this.MaintenanceWorker = new HashSet<MaintenanceWorker>();
         }
     
@@ -24,12 +25,13 @@ namespace IronMotors.Models
         public int CarServiceId { get; set; }
         public int CarId { get; set; }
         public System.DateTime DateTime { get; set; }
-        public string Description { get; set; }
         public int StatusId { get; set; }
     
         public virtual Car Car { get; set; }
         public virtual CarService CarService { get; set; }
         public virtual MaintenanceStatus MaintenanceStatus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaintenanceService> MaintenanceService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaintenanceWorker> MaintenanceWorker { get; set; }
     }

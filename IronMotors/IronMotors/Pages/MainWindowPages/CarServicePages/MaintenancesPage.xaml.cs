@@ -28,7 +28,6 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
 
         private void Refresh()
         {
-
             LVMaintenances.ItemsSource = App.LoggedAdmin.CarService.Maintenance.ToList();
         }
 
@@ -37,22 +36,12 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             Refresh();
         }
 
-        private void MIAbout_Click(object sender, RoutedEventArgs e)
+        private void BAbout_Click(object sender, RoutedEventArgs e)
         {
-            var selectedMaintenance = LVMaintenances.SelectedItem as Maintenance;
+            var selectedMaintenance = (sender as Button).DataContext as Maintenance;
             if (selectedMaintenance == null)
                 return;
             NavigationService.Navigate(new MaintenancePage(selectedMaintenance));
-        }
-
-        private void MIWorkers_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new AppointWorkersPage());
-        }
-
-        private void BFinish_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new FinishMaintenancePage());
 
         }
 

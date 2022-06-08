@@ -12,26 +12,20 @@ namespace IronMotors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Car
+    public partial class Model
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
+        public Model()
         {
-            this.CarImage = new HashSet<CarImage>();
-            this.Maintenance = new HashSet<Maintenance>();
+            this.Car = new HashSet<Car>();
         }
     
         public int Id { get; set; }
-        public string NumberPlate { get; set; }
-        public int ModelId { get; set; }
-        public int ClientId { get; set; }
-        public int YearOfIssue { get; set; }
+        public string Name { get; set; }
+        public int CarBrandId { get; set; }
     
-        public virtual Client Client { get; set; }
-        public virtual Model Model { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CarImage> CarImage { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Maintenance> Maintenance { get; set; }
+        public virtual ICollection<Car> Car { get; set; }
+        public virtual CarBrand CarBrand { get; set; }
     }
 }

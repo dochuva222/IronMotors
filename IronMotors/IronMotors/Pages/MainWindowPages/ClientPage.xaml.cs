@@ -46,6 +46,9 @@ namespace IronMotors.Pages.MainWindowPages
         private void BRegistration_Click(object sender, RoutedEventArgs e)
         {
             string errorMessage = "";
+
+            MyValidator.Validate(contextClient, out errorMessage);
+
             if (contextClient.Id != 0)
             {
                 if (App.DB.Client.Where(c => c.Id != contextClient.Id).FirstOrDefault(c => c.PhoneNumber == contextClient.PhoneNumber) != null)
@@ -57,15 +60,21 @@ namespace IronMotors.Pages.MainWindowPages
                     errorMessage += $"Данный номер уже используется\n";
             }
 
-            if (!MyValidator.Validate(contextClient, out errorMessage))
+            if (!string.IsNullOrWhiteSpace(errorMessage))
             {
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            App.DB.Client.Add(contextClient);
+            if (contextClient.Id == 0)
+            {
+                App.DB.Client.Add(contextClient);
+                MessageBox.Show("Клиент зарегистрирован");
+            }
+            else
+                MessageBox.Show("Данные успешно изменены");
             App.DB.SaveChanges();
-            NavigationService.GoBack();
+
         }
 
         private void BCancel_Click(object sender, RoutedEventArgs e)
@@ -89,11 +98,17 @@ namespace IronMotors.Pages.MainWindowPages
 
         private void BAddCar_Click(object sender, RoutedEventArgs e)
         {
+            if (contextClient.Id == 0)
+            {
+                MessageBox.Show("Сохраните данные о клиенте", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             NavigationService.Navigate(new CarPage(new Car() { Client = contextClient }));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            LVCars.SelectedItem = null;
             LVCars.ItemsSource = contextClient.Car.ToList();
         }
 
