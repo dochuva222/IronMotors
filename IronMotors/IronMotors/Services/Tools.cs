@@ -10,7 +10,7 @@ namespace IronMotors.Services
 {
     public static class Tools
     {
-        public static BitmapImage BytesToImage(byte[] bytes)
+        public static BitmapImage BytesToImage(byte[] bytes) //метод нужен чтобы получать картинку в wpf из байтов, используется например чтобы показать картинку, которую мы выбрали через окно выбора 
         {
             using (MemoryStream memoryStream = new MemoryStream(bytes))
             {

@@ -26,7 +26,7 @@ namespace IronMotors
 
         public App()
         {
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;//обработчик ошибок, обрабатывает все ошибки которые могут возникнуть без вылета приложения
             RegisterAnnotations();
         }
 
@@ -35,7 +35,7 @@ namespace IronMotors
             MessageBox.Show(e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
         }
-
+        //регистрация метадаты смотреть в Caretadata.cs
         private void RegisterAnnotations()
         {
             AddDescriptor<Client, ClientMetadata>();

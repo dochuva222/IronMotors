@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace IronMotors.Models
 {
+    //partial классы дополняют классы которые генерирует адо модель,
+    //в них можно писать дополнительную вспомогатльеную логику
     public partial class Car
     {
         public byte[] RandomImage
