@@ -25,30 +25,24 @@ namespace IronMotors.Pages
         public LoginPage()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.AdministratorId != 0)
-            {
-                App.LoggedAdmin = App.DB.Administrator.FirstOrDefault(c => c.Id == Properties.Settings.Default.AdministratorId);
-                new MainWindow().Show();
-                App.LoginWindowInstance.Close();
-            }
+
         }
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
-            var loggedAdmin = App.DB.Administrator.FirstOrDefault(c => c.Login == TBLogin.Text);
-            if (loggedAdmin == null)
+            var loggedUser = App.DB.User.FirstOrDefault(c => c.Login == TBLogin.Text);
+            if (loggedUser == null)
             {
-                MessageBox.Show("Неверный номер телефона", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Неверный логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (loggedAdmin.Password != PBPassword.Password)
+            if (loggedUser.Password != PBPassword.Password)
             {
                 MessageBox.Show("Неверный пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Properties.Settings.Default.AdministratorId = loggedAdmin.Id;
-            Properties.Settings.Default.Save();
-            App.LoggedAdmin = loggedAdmin;
+            if (loggedUser.Administrator != null)
+                App.LoggedAdmin = loggedUser.Administrator.FirstOrDefault();
             new MainWindow().Show();
             App.LoginWindowInstance.Close();
 

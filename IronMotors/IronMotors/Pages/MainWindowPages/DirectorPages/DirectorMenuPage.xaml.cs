@@ -1,6 +1,4 @@
 ﻿using IronMotors.AppWindows;
-using IronMotors.Pages.MainWindowPages.CarServicePages;
-using IronMotors.Pages.MainWindowPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IronMotors.Pages.MainWindowPages
+namespace IronMotors.Pages.MainWindowPages.DirectorPages
 {
     /// <summary>
-    /// Interaction logic for MenuPage.xaml
+    /// Interaction logic for DirectorMenuPage.xaml
     /// </summary>
-    public partial class MenuPage : Page
+    public partial class DirectorMenuPage : Page
     {
-        public MenuPage()
+        public DirectorMenuPage()
         {
             InitializeComponent();
-            MenuFrame.Navigate(new MaintenancesPage(App.LoggedAdmin.CarService));
-        }
-
-        private void BMaintenance_Click(object sender, RoutedEventArgs e)
-        {
-            MenuFrame.Navigate(new MaintenancesPage(App.LoggedAdmin.CarService));
+            MenuFrame.Navigate(new CarServicesPage());
         }
 
         private void BLogout_Click(object sender, RoutedEventArgs e)
@@ -44,12 +37,18 @@ namespace IronMotors.Pages.MainWindowPages
         private void BClients_Click(object sender, RoutedEventArgs e)
         {
             MenuFrame.Navigate(new ClientsPage());
+
         }
 
-        private void BWorkers_Click(object sender, RoutedEventArgs e)
+        private void BCarServices_Click(object sender, RoutedEventArgs e)
         {
-            MenuFrame.Navigate(new WorkersPage(App.LoggedAdmin.CarService));
+            MenuFrame.Navigate(new CarServicesPage());
 
+        }
+
+        private void BServices_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFrame.Navigate(new ServicesPage());
         }
     }
 }

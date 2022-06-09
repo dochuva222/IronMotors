@@ -1,5 +1,6 @@
 ﻿using IronMotors.Pages;
 using IronMotors.Pages.MainWindowPages;
+using IronMotors.Pages.MainWindowPages.DirectorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,10 @@ namespace IronMotors.AppWindows
         {
             InitializeComponent();
             App.MainWindowInstance = this; //запись окна на хранение см. App.xaml.cs
-            MainFrame.Navigate(new MenuPage());
+            if (App.LoggedAdmin != null)
+                MainFrame.Navigate(new MenuPage());
+            else
+                MainFrame.Navigate(new DirectorMenuPage());
         }
     }
 }

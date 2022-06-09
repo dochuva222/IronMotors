@@ -18,6 +18,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Label x:Name="LHeader"
                    Content="Заявка на автосервис"
@@ -48,6 +49,7 @@
                             Content="Зарегестрировать клиента"
                             Click="BAddClient_Click" />
                 </StackPanel>
+
                 <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,10">
                     <Label Content="Дата: "
@@ -63,168 +65,168 @@
                            Margin="0,0,29,0" />
                     <ComboBox x:Name="CBTimes"
                               Width="200" />
-                </StackPanel>
-                <StackPanel>
-                    <Label Content="Услуги"
-                           Style="{StaticResource LableH3}" />
-                    <StackPanel Orientation="Horizontal"
-                                x:Name="SPServicePanel">
-                        <ComboBox x:Name="CBServices"
-                                  DisplayMemberPath="Name"
-                                  IsEditable="True"
-                                  IsTextSearchEnabled="True"
-                                  Width="200"
-                                  Margin="0,0,10,0" />
-                        <Button x:Name="BAddService"
-                                Content="Добавить"
-                                Click="BAddService_Click"
-                                Margin="0,0,10,0" />
-                        <Label Content="Общая стоимость: "
-                               Style="{StaticResource LabelP}" />
-                        <Label x:Name="LSum"
-                               Style="{StaticResource LabelP}" />
-                    </StackPanel>
-
-                    <DataGrid x:Name="DGServices"
-                              AutoGenerateColumns="False"
-                              IsReadOnly="True"
-                              ColumnWidth="*"
-                              Margin="0,10,0,0"
-                              Height="200">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Название"
-                                                Binding="{Binding Service.Name}" />
-                            <DataGridTextColumn Header="Стоимость"
-                                                Binding="{Binding Service.Price}" />
-                            <DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button x:Name="BRemoveService"
-                                                Content="Удалить"
-                                                Click="BRemoveService_Click" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Label Content="Назначение работников"
-                           Style="{StaticResource LableH2}"
-                           Grid.ColumnSpan="3" />
-                    <StackPanel Grid.Column="1"
-                                Grid.Row="2"
-                                VerticalAlignment="Center">
-                        <Button x:Name="BAppointWorker"
-                                Click="BAppointWorker_Click"
-                                Margin="0,0,0,20"
-                                Style="{StaticResource MaterialDesignFlatSecondaryButton}">
-                            <Image Source="/Resources/appointWorkerIcon.png"
-                                   RenderOptions.BitmapScalingMode="Fant" />
-                        </Button>
-                        <Button x:Name="BRemoveWorker"
-                                Click="BRemoveWorker_Click"
-                                Style="{StaticResource MaterialDesignFlatSecondaryButton}">
-                            <Image Source="/Resources/disappointWorkerIcon.png"
-                                   RenderOptions.BitmapScalingMode="Fant" />
-                        </Button>
-                    </StackPanel>
-                    <DockPanel Grid.Row="2">
-                        <Label Content="Назначенные работники"
-                               Style="{StaticResource LableH3}"
-                               DockPanel.Dock="Top"
-                               HorizontalAlignment="Center" />
-                        <ListView x:Name="LVAppointedWorkers" Height="500">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="400"
-                                          Height="200">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="2*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding Worker.Photo}"
-                                               Height="200"
-                                               RenderOptions.BitmapScalingMode="Fant" />
-                                        <StackPanel Grid.Column="1"
-                                                    Margin="10,0,0,0">
-                                            <Label Content="{Binding Worker.Fullname}"
-                                                   Style="{StaticResource LabelP}" />
-                                            <Label Style="{StaticResource LabelP}">
-                                                <Label.Content>
-                                                    <AccessText Text="{Binding Worker.Speciality, StringFormat='{}Специальность: {0}'}"
-                                                                TextWrapping="WrapWithOverflow" />
-                                                </Label.Content>
-                                            </Label>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </DockPanel>
-
-                    <DockPanel Grid.Row="2"
-                               Grid.Column="2">
-                        <Label Content="Доступные Работники"
-                               Style="{StaticResource LableH3}"
-                               DockPanel.Dock="Top"
-                               HorizontalAlignment="Center" />
-                        <ListView x:Name="LVAllWorkers"
-                                  Height="500">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="400"
-                                          Height="200">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="2*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding Photo}"
-                                               Height="200"
-                                               RenderOptions.BitmapScalingMode="Fant" />
-                                        <StackPanel Grid.Column="1"
-                                                    Margin="10,0,0,0">
-                                            <Label Content="{Binding Fullname}"
-                                                   Style="{StaticResource LabelP}" />
-                                            <Label Style="{StaticResource LabelP}">
-                                                <Label.Content>
-                                                    <AccessText Text="{Binding Speciality, StringFormat='{}Специальность: {0}'}"
-                                                                TextWrapping="WrapWithOverflow" />
-                                                </Label.Content>
-                                            </Label>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </DockPanel>
-                </Grid>
-
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="0,10,0,0">
                     <Button x:Name="BRegistrate"
                             Content="Создать заявку"
                             Click="BRegistrate_Click"
-                            Margin="0,0,10,0" />
-                    <Button x:Name="BBack"
-                            Content="Назад"
-                            Click="BBack_Click" />
+                            Margin="10,0,0,0" />
                 </StackPanel>
+                <TabControl Style="{StaticResource MaterialDesignFilledTabControl}">
+                    <TabItem Header="Услуги">
+                        <StackPanel>
+                            <Label Content="Услуги"
+                                   Style="{StaticResource LableH3}" />
+                            <StackPanel Orientation="Horizontal"
+                                        x:Name="SPServicePanel">
+                                <ComboBox x:Name="CBServices"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="True"
+                                          IsTextSearchEnabled="True"
+                                          Width="200"
+                                          Margin="0,0,10,0" />
+                                <Button x:Name="BAddService"
+                                        Content="Добавить"
+                                        Click="BAddService_Click"
+                                        Margin="0,0,10,0" />
+                                <Label Content="Общая стоимость: "
+                                       Style="{StaticResource LabelP}" />
+                                <Label x:Name="LSum"
+                                       Style="{StaticResource LabelP}" />
+                            </StackPanel>
+
+                            <DataGrid x:Name="DGServices"
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True"
+                                      ColumnWidth="*"
+                                      Margin="0,10,0,0"
+                                      Height="200">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Название"
+                                                        Binding="{Binding Service.Name}"  />
+                                    <DataGridTextColumn Header="Стоимость"
+                                                        Binding="{Binding Service.Price}" />
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="BRemoveService"
+                                                        Content="Удалить"
+                                                        Click="BRemoveService_Click" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Сотрудники">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Label Content="Назначение работников"
+                                   Style="{StaticResource LableH2}"
+                                   Grid.ColumnSpan="3" />
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="2"
+                                        VerticalAlignment="Center">
+                                <Button x:Name="BAppointWorker"
+                                        Click="BAppointWorker_Click"
+                                        Margin="0,0,0,20"
+                                        Style="{StaticResource MaterialDesignFlatSecondaryButton}">
+                                    <Image Source="/Resources/appointWorkerIcon.png"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                                <Button x:Name="BRemoveWorker"
+                                        Click="BRemoveWorker_Click"
+                                        Style="{StaticResource MaterialDesignFlatSecondaryButton}">
+                                    <Image Source="/Resources/disappointWorkerIcon.png"
+                                           RenderOptions.BitmapScalingMode="Fant" />
+                                </Button>
+                            </StackPanel>
+                            <DockPanel Grid.Row="2">
+                                <Label Content="Назначенные работники"
+                                       Style="{StaticResource LableH3}"
+                                       DockPanel.Dock="Top"
+                                       HorizontalAlignment="Center" />
+                                <ListView x:Name="LVAppointedWorkers"
+                                          Height="500">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="400"
+                                                  Height="200">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Worker.Photo}"
+                                                       Height="200"
+                                                       RenderOptions.BitmapScalingMode="Fant" />
+                                                <StackPanel Grid.Column="1"
+                                                            Margin="10,0,0,0">
+                                                    <Label Content="{Binding Worker.Fullname}"
+                                                           Style="{StaticResource LabelP}" />
+                                                    <Label Style="{StaticResource LabelP}">
+                                                        <Label.Content>
+                                                            <AccessText Text="{Binding Worker.Speciality, StringFormat='{}Специальность: {0}'}"
+                                                                        TextWrapping="WrapWithOverflow" />
+                                                        </Label.Content>
+                                                    </Label>
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DockPanel>
+
+                            <DockPanel Grid.Row="2"
+                                       Grid.Column="2">
+                                <Label Content="Доступные Работники"
+                                       Style="{StaticResource LableH3}"
+                                       DockPanel.Dock="Top"
+                                       HorizontalAlignment="Center" />
+                                <ListView x:Name="LVAllWorkers"
+                                          Height="500">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="400"
+                                                  Height="200">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Photo}"
+                                                       Height="200"
+                                                       RenderOptions.BitmapScalingMode="Fant" />
+                                                <StackPanel Grid.Column="1"
+                                                            Margin="10,0,0,0">
+                                                    <Label Content="{Binding Fullname}"
+                                                           Style="{StaticResource LabelP}" />
+                                                    <Label Style="{StaticResource LabelP}">
+                                                        <Label.Content>
+                                                            <AccessText Text="{Binding Speciality, StringFormat='{}Специальность: {0}'}"
+                                                                        TextWrapping="WrapWithOverflow" />
+                                                        </Label.Content>
+                                                    </Label>
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DockPanel>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
 
             </StackPanel>
+
             <!--<m:Map x:Name="MainMap"
                    Grid.Column="1"
                    Grid.Row="1"

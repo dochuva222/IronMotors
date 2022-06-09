@@ -15,13 +15,10 @@ namespace IronMotors.Models
     public partial class Administrator
     {
         public int Id { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Middlename { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int CarServiceId { get; set; }
+        public Nullable<int> CarServiceId { get; set; }
+        public int UserId { get; set; }
     
         public virtual CarService CarService { get; set; }
+        public virtual User User { get; set; }
     }
 }

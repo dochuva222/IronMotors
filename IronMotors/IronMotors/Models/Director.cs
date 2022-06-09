@@ -12,13 +12,11 @@ namespace IronMotors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientNotification
+    public partial class Director
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
-        public System.DateTime DateTime { get; set; }
-        public string Message { get; set; }
+        public int UserId { get; set; }
     
-        public virtual Client Client { get; set; }
+        public virtual User User { get; set; }
     }
 }

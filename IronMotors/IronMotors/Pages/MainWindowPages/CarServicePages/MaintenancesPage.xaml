@@ -21,47 +21,34 @@
                 <Label Content="Заявки"
                        Style="{StaticResource LableH1}" />
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="фильтрация" />
+                    <Label Content="От: "
+                           Margin="0,0,10,0"
+                           Style="{StaticResource LabelP}" />
+                    <DatePicker x:Name="DPFromDate"
+                                SelectedDateChanged="DPFromDate_SelectedDateChanged"
+                                Width="200"
+                                Margin="0,0,10,0" />
+                    <Label Content="До: "
+                           Margin="0,0,10,0"
+                           Style="{StaticResource LabelP}" />
+                    <DatePicker x:Name="DPToDate"
+                                Width="200"
+                                SelectedDateChanged="DPToDate_SelectedDateChanged"
+                                Margin="0,0,10,0" />
+                    <Button x:Name="BClear"
+                            Content="Все заявки"
+                            Click="BClear_Click" />
                 </StackPanel>
             </StackPanel>
             <ListView x:Name="LVMaintenances">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
-                        
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding StatusId}"
-                                         Value="1">
-                                <Setter Property="Background"
-                                        Value="LightGray" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding StatusId}"
-                                         Value="2">
-                                <Setter Property="Background"
-                                        Value="LightBlue" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding StatusId}"
-                                         Value="3">
-                                <Setter Property="Background"
-                                        Value="Pink" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding StatusId}"
-                                         Value="4">
-                                <Setter Property="Background"
-                                        Value="LightGreen" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Дата и время"
-                                        DisplayMemberBinding="{Binding DateTime}" />
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat='{}{0:d/M/yyyy HH:mm }'}" />
                         <GridViewColumn Header="Машина"
                                         DisplayMemberBinding="{Binding Car.CarFullname}" />
                         <GridViewColumn Header="Владелец"
                                         DisplayMemberBinding="{Binding Car.Client.Fullname}" />
-                        <GridViewColumn Header="Статус"
-                                        DisplayMemberBinding="{Binding MaintenanceStatus.Name}" />
                         <GridViewColumn Header="Сумма"
                                         DisplayMemberBinding="{Binding ServiceSum}" />
                         <GridViewColumn>

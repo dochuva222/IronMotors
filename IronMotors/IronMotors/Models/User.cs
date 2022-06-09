@@ -12,18 +12,25 @@ namespace IronMotors.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MaintenanceStatus
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MaintenanceStatus()
+        public User()
         {
-            this.Maintenance = new HashSet<Maintenance>();
+            this.Administrator = new HashSet<Administrator>();
+            this.Director = new HashSet<Director>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Middlename { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Maintenance> Maintenance { get; set; }
+        public virtual ICollection<Administrator> Administrator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Director> Director { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace IronMotors
     {
         public static IronMotorsEntities DB = new IronMotorsEntities();
         public static Administrator LoggedAdmin;
+        public static Director LoggedDirector;
         public static LoginWindow LoginWindowInstance;
         public static MainWindow MainWindowInstance;
         public static string BingMapsToken = "4avPgdF53ME4SYSkWQBa~tgoNZczGM6VLZ7821dO6dg~Ak1c_TvUfkTSj_NBm1xa_0YdU6PgqfhSSTI9dGhuEVFk8zg2148LPQMo54zVvJnU";
@@ -28,19 +29,6 @@ namespace IronMotors
         {
             DispatcherUnhandledException += App_DispatcherUnhandledException;//обработчик ошибок, обрабатывает все ошибки которые могут возникнуть без вылета приложения
             RegisterAnnotations();
-            UpdateStatuses();
-        }
-
-        public void UpdateStatuses()
-        {
-            foreach (var maintenance in App.DB.Maintenance.ToList().Where(m => m.DateTime.Date == DateTime.Now.Date && m.StatusId != 3))
-            {
-                if (maintenance.DateTime.TimeOfDay.Add(TimeSpan.FromHours(1)) > DateTime.Now.TimeOfDay)
-                    maintenance.StatusId = 2;
-                if (maintenance.DateTime.TimeOfDay.Add(TimeSpan.FromHours(1)) < DateTime.Now.TimeOfDay)
-                    maintenance.StatusId = 4;
-            }
-            App.DB.SaveChanges();
         }
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -55,6 +43,8 @@ namespace IronMotors
             AddDescriptor<Car, CarMetadata>();
             AddDescriptor<Maintenance, MaintenanceMetadata>();
             AddDescriptor<Worker, WorkerMetadata>();
+            AddDescriptor<Service, ServiceMetadata>();
+            AddDescriptor<User, UserMetadata>();
         }
 
         private void AddDescriptor<T, A>()

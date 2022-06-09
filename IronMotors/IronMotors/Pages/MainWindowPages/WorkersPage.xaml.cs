@@ -21,14 +21,16 @@ namespace IronMotors.Pages.MainWindowPages
     /// </summary>
     public partial class WorkersPage : Page
     {
-        public WorkersPage()
+        CarService contextCarService;
+        public WorkersPage(CarService carService)
         {
             InitializeComponent();
+            contextCarService = carService;
         }
 
         private void BAddWorker_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new WorkerPage(new Worker() { CarServiceId = App.LoggedAdmin.CarServiceId }));
+            NavigationService.Navigate(new WorkerPage(new Worker() { CarServiceId = contextCarService.Id }));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -40,7 +42,7 @@ namespace IronMotors.Pages.MainWindowPages
         private void Refresh()
         {
             var searchText = TBSearch.Text.ToLower();
-            var filtred = App.LoggedAdmin.CarService.Worker.ToList();
+            var filtred = contextCarService.Worker.ToList();
             if (!string.IsNullOrWhiteSpace(searchText))
                 filtred = filtred.Where(f => f.Lastname.ToLower().Contains(searchText) || f.Firstname.ToLower().Contains(searchText) || f.Speciality.ToLower().Contains(searchText)).ToList();
             LVWorkers.ItemsSource = filtred;

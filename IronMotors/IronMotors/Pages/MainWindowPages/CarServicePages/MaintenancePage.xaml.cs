@@ -48,7 +48,11 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
                 CBCars.IsEnabled = false;
                 DPMaintenance.IsEnabled = false;
                 CBTimes.IsEnabled = false;
-                DGServices.IsEnabled = false;
+                BAppointWorker.IsEnabled = false;
+                BRemoveWorker.IsEnabled = false;
+                BAppointWorker.Visibility = Visibility.Hidden;
+                BRemoveWorker.Visibility = Visibility.Hidden;
+                LVAllWorkers.Visibility = Visibility.Hidden;
                 SPServicePanel.Visibility = Visibility.Collapsed;
                 BRegistrate.Visibility = Visibility.Collapsed;
                 BAddClient.Visibility = Visibility.Collapsed;
@@ -57,10 +61,10 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             }
             else
             {
+                LVAllWorkers.ItemsSource = App.LoggedAdmin.CarService.Worker.ToList();
                 DPMaintenance.BlackoutDates.AddDatesInPast();
             }
-            //LoadPushPins();
-            //MainMap.CredentialsProvider = new ApplicationIdCredentialsProvider(App.BingMapsToken);
+            
         }
 
         private void BRegistrate_Click(object sender, RoutedEventArgs e)
@@ -77,7 +81,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
                 errorMessage += $"Выберите время\n";
             if (services.Count == 0)
                 errorMessage += $"Необходимо выбрать как минимум одну услугу\n";
-            if(appointedWorkers.Count == 0)
+            if (appointedWorkers.Count == 0)
                 errorMessage += $"Необходимо выбрать как минимум одного работника\n";
 
             if (!string.IsNullOrWhiteSpace(errorMessage))
@@ -95,16 +99,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             NavigationService.GoBack();
         }
 
-        //private void LoadPushPins()
-        //{
-        //    foreach (var carService in App.DB.CarService)
-        //    {
-        //        var layer = new MapLayer();
-        //        var pushpin = new Pushpin() { Location = new Location(carService.Latitude, carService.Longitude) };
-        //        layer.Children.Add(pushpin);
-        //        MainMap.Children.Add(layer);
-        //    }
-        //}
+        
 
         private void DPMaintenance_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -128,6 +123,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
                     CBTimes.Items.Add(TimeSpan.FromHours(workHour));
                 }
             }
+            RefreshWorkers();
         }
 
         private void BAddClient_Click(object sender, RoutedEventArgs e)
@@ -147,11 +143,6 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             CBClients.ItemsSource = App.DB.Client.ToList();
-        }
-
-        private void BBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
 
         private void BAddService_Click(object sender, RoutedEventArgs e)
@@ -178,6 +169,11 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
 
         private void BRemoveService_Click(object sender, RoutedEventArgs e)
         {
+            if(contextMaintenance.Id != 0)
+            {
+                MessageBox.Show("Изменения не возможны");
+                return;
+            }
             var selectedService = (sender as Button).DataContext as MaintenanceService;
             if (selectedService == null)
                 return;
@@ -191,7 +187,6 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
         private void RefreshWorkers()
         {
             LVAppointedWorkers.ItemsSource = appointedWorkers.ToList();
-            LVAllWorkers.ItemsSource = App.DB.Worker.ToList();
         }
 
         private void BAppointWorker_Click(object sender, RoutedEventArgs e)
@@ -199,6 +194,9 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             var selectedWorker = LVAllWorkers.SelectedItem as Worker;
             if (selectedWorker == null)
                 return;
+            var allWorkers = LVAllWorkers.ItemsSource.Cast<Worker>().ToList();
+            allWorkers.Remove(selectedWorker);
+            LVAllWorkers.ItemsSource = allWorkers.ToList();
             appointedWorkers.Add(new MaintenanceWorker() { Maintenance = contextMaintenance, Worker = selectedWorker });
             RefreshWorkers();
         }
@@ -208,6 +206,9 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             var selectedWorker = LVAppointedWorkers.SelectedItem as MaintenanceWorker;
             if (selectedWorker == null)
                 return;
+            var allWorkers = LVAllWorkers.ItemsSource.Cast<Worker>().ToList();
+            allWorkers.Add(selectedWorker.Worker);
+            LVAllWorkers.ItemsSource = allWorkers;
             appointedWorkers.Remove(selectedWorker);
             RefreshWorkers();
         }

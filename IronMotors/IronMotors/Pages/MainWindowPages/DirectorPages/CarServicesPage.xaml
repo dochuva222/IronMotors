@@ -1,0 +1,59 @@
+﻿<Page x:Class="IronMotors.Pages.MainWindowPages.DirectorPages.CarServicesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:IronMotors.Pages.MainWindowPages.DirectorPages"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Background="{StaticResource MaterialDesignPaper}"
+      Title="CarServicesPage"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Автосервисы"
+               Style="{StaticResource LableH1}"
+               Grid.ColumnSpan="2" />
+        <ListView x:Name="LVCarServices"
+                  Grid.Row="1">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Работники"
+                              Click="Workers_Click" />
+                    <MenuItem Header="Назначить администратора"
+                              Click="AdministartorAppoint_Click" />
+                    <MenuItem Header="Заявки"
+                              Click="Maintenances_Click" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Style="{StaticResource LabelP}">
+                            <Label.Content>
+                                <AccessText Text="{Binding Address}"
+                                            TextWrapping="WrapWithOverflow" />
+                            </Label.Content>
+                        </Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <m:Map x:Name="MainMap"
+               Grid.Column="1"
+               Grid.Row="1"
+               Center="55.798888889,49.113888889"
+               ZoomLevel="10">
+        </m:Map>
+    </Grid>
+</Page>

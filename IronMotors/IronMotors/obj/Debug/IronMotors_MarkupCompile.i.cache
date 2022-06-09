@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Работа\Киямов диплом\IronMotors\IronMotors\App.xaml
-12770122723
+18-1710730493
 22055865225
-45-1641691168
+54929378935
 221132644044
-AppWindows\LoginWindow.xaml;AppWindows\MainWindow.xaml;Pages\LoginWindowPages\LoginPage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml;Pages\MainWindowPages\ClientPage.xaml;Pages\MainWindowPages\ClientsPage.xaml;Pages\MainWindowPages\MenuPage.xaml;Pages\LoginWindowPages\RegistrationPage.xaml;Pages\MainWindowPages\CarPage.xaml;Pages\MainWindowPages\WorkerPage.xaml;Pages\MainWindowPages\WorkersPage.xaml;
+AppWindows\LoginWindow.xaml;AppWindows\MainWindow.xaml;Pages\LoginWindowPages\LoginPage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancePage.xaml;Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml;Pages\MainWindowPages\ClientPage.xaml;Pages\MainWindowPages\ClientsPage.xaml;Pages\MainWindowPages\DirectorPages\AdministratorPage.xaml;Pages\MainWindowPages\DirectorPages\AppointAdministratorPage.xaml;Pages\MainWindowPages\DirectorPages\CarServicesPage.xaml;Pages\MainWindowPages\DirectorPages\DirectorMenuPage.xaml;Pages\MainWindowPages\DirectorPages\ServicePage.xaml;Pages\MainWindowPages\DirectorPages\ServicesPage.xaml;Pages\MainWindowPages\MenuPage.xaml;Pages\LoginWindowPages\RegistrationPage.xaml;Pages\MainWindowPages\CarPage.xaml;Pages\MainWindowPages\WorkerPage.xaml;Pages\MainWindowPages\WorkersPage.xaml;
 
 True
 

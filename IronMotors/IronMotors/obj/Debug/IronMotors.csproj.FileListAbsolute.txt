@@ -1,1 +1,0 @@
-D:\Работа\Киямов диплом\IronMotors\IronMotors\bin\Debug\EntityFramework.xml
