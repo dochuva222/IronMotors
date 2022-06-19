@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IronMotorsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IronMotorsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="IronMotorsModel.Administrator" />
+    <EntitySet Name="Car" EntityType="IronMotorsModel.Car" />
+    <EntitySet Name="CarBrand" EntityType="IronMotorsModel.CarBrand" />
+    <EntitySet Name="CarImage" EntityType="IronMotorsModel.CarImage" />
+    <EntitySet Name="CarService" EntityType="IronMotorsModel.CarService" />
+    <EntitySet Name="Client" EntityType="IronMotorsModel.Client" />
+    <EntitySet Name="Director" EntityType="IronMotorsModel.Director" />
+    <EntitySet Name="Maintenance" EntityType="IronMotorsModel.Maintenance" />
+    <EntitySet Name="MaintenanceService" EntityType="IronMotorsModel.MaintenanceService" />
+    <EntitySet Name="MaintenanceWorker" EntityType="IronMotorsModel.MaintenanceWorker" />
+    <EntitySet Name="Model" EntityType="IronMotorsModel.Model" />
+    <EntitySet Name="Service" EntityType="IronMotorsModel.Service" />
+    <EntitySet Name="sysdiagrams" EntityType="IronMotorsModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="IronMotorsModel.User" />
+    <EntitySet Name="Worker" EntityType="IronMotorsModel.Worker" />
+    <AssociationSet Name="FK_Administrator_CarService" Association="IronMotorsModel.FK_Administrator_CarService">
+      <End Role="CarService" EntitySet="CarService" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Administrator_User" Association="IronMotorsModel.FK_Administrator_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Client" Association="IronMotorsModel.FK_Car_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Model" Association="IronMotorsModel.FK_Car_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarImage_Car" Association="IronMotorsModel.FK_CarImage_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="CarImage" EntitySet="CarImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceOrder_Car" Association="IronMotorsModel.FK_ServiceOrder_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_CarBrand" Association="IronMotorsModel.FK_Model_CarBrand">
+      <End Role="CarBrand" EntitySet="CarBrand" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceOrder_CarService" Association="IronMotorsModel.FK_ServiceOrder_CarService">
+      <End Role="CarService" EntitySet="CarService" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_CarService" Association="IronMotorsModel.FK_Worker_CarService">
+      <End Role="CarService" EntitySet="CarService" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Director_User" Association="IronMotorsModel.FK_Director_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Director" EntitySet="Director" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaintenanceService_Maintenance" Association="IronMotorsModel.FK_MaintenanceService_Maintenance">
+      <End Role="Maintenance" EntitySet="Maintenance" />
+      <End Role="MaintenanceService" EntitySet="MaintenanceService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaintenanceWorker_Maintenance" Association="IronMotorsModel.FK_MaintenanceWorker_Maintenance">
+      <End Role="Maintenance" EntitySet="Maintenance" />
+      <End Role="MaintenanceWorker" EntitySet="MaintenanceWorker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaintenanceService_Service" Association="IronMotorsModel.FK_MaintenanceService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="MaintenanceService" EntitySet="MaintenanceService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaintenanceWorker_Worker" Association="IronMotorsModel.FK_MaintenanceWorker_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="MaintenanceWorker" EntitySet="MaintenanceWorker" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarServiceId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_Administrator_CarService" FromRole="Administrator" ToRole="CarService" />
+    <NavigationProperty Name="User" Relationship="IronMotorsModel.FK_Administrator_User" FromRole="Administrator" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumberPlate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModelId" Type="Int32" Nullable="false" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="YearOfIssue" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Car" ToRole="Client" />
+    <NavigationProperty Name="Model" Relationship="IronMotorsModel.FK_Car_Model" FromRole="Car" ToRole="Model" />
+    <NavigationProperty Name="CarImage" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="Car" ToRole="CarImage" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Car" ToRole="Maintenance" />
+  </EntityType>
+  <EntityType Name="CarBrand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Model" Relationship="IronMotorsModel.FK_Model_CarBrand" FromRole="CarBrand" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="CarImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarId" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_CarImage_Car" FromRole="CarImage" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="CarService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Administrator" Relationship="IronMotorsModel.FK_Administrator_CarService" FromRole="CarService" ToRole="Administrator" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="CarService" ToRole="Maintenance" />
+    <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="CarService" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Client" FromRole="Client" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Director">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="IronMotorsModel.FK_Director_User" FromRole="Director" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Maintenance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarServiceId" Type="Int32" Nullable="false" />
+    <Property Name="CarId" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
+    <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
+    <NavigationProperty Name="MaintenanceService" Relationship="IronMotorsModel.FK_MaintenanceService_Maintenance" FromRole="Maintenance" ToRole="MaintenanceService" />
+    <NavigationProperty Name="MaintenanceWorker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Maintenance" FromRole="Maintenance" ToRole="MaintenanceWorker" />
+  </EntityType>
+  <EntityType Name="MaintenanceService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintenanceId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_MaintenanceService_Maintenance" FromRole="MaintenanceService" ToRole="Maintenance" />
+    <NavigationProperty Name="Service" Relationship="IronMotorsModel.FK_MaintenanceService_Service" FromRole="MaintenanceService" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="MaintenanceWorker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintenanceId" Type="Int32" Nullable="false" />
+    <Property Name="WorkerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Maintenance" Relationship="IronMotorsModel.FK_MaintenanceWorker_Maintenance" FromRole="MaintenanceWorker" ToRole="Maintenance" />
+    <NavigationProperty Name="Worker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Worker" FromRole="MaintenanceWorker" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CarBrandId" Type="Int32" />
+    <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Model" FromRole="Model" ToRole="Car" />
+    <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Model_CarBrand" FromRole="Model" ToRole="CarBrand" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="MaintenanceService" Relationship="IronMotorsModel.FK_MaintenanceService_Service" FromRole="Service" ToRole="MaintenanceService" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Middlename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Administrator" Relationship="IronMotorsModel.FK_Administrator_User" FromRole="User" ToRole="Administrator" />
+    <NavigationProperty Name="Director" Relationship="IronMotorsModel.FK_Director_User" FromRole="User" ToRole="Director" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CarServiceId" Type="Int32" Nullable="false" />
+    <Property Name="Photo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="Speciality" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_Worker_CarService" FromRole="Worker" ToRole="CarService" />
+    <NavigationProperty Name="MaintenanceWorker" Relationship="IronMotorsModel.FK_MaintenanceWorker_Worker" FromRole="Worker" ToRole="MaintenanceWorker" />
+  </EntityType>
+  <Association Name="FK_Administrator_CarService">
+    <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="0..1" />
+    <End Type="IronMotorsModel.Administrator" Role="Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="CarServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Administrator_User">
+    <End Type="IronMotorsModel.User" Role="User" Multiplicity="1" />
+    <End Type="IronMotorsModel.Administrator" Role="Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Client">
+    <End Type="IronMotorsModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Model">
+    <End Type="IronMotorsModel.Model" Role="Model" Multiplicity="1" />
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ModelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarImage_Car">
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1" />
+    <End Type="IronMotorsModel.CarImage" Role="CarImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CarImage">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceOrder_Car">
+    <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_CarBrand">
+    <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="0..1" />
+    <End Type="IronMotorsModel.Model" Role="Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarBrand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="CarBrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceOrder_CarService">
+    <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="CarServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_CarService">
+    <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IronMotorsModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="CarServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Director_User">
+    <End Type="IronMotorsModel.User" Role="User" Multiplicity="1" />
+    <End Type="IronMotorsModel.Director" Role="Director" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Director">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaintenanceService_Maintenance">
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1" />
+    <End Type="IronMotorsModel.MaintenanceService" Role="MaintenanceService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maintenance">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaintenanceService">
+        <PropertyRef Name="MaintenanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaintenanceWorker_Maintenance">
+    <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IronMotorsModel.MaintenanceWorker" Role="MaintenanceWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maintenance">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaintenanceWorker">
+        <PropertyRef Name="MaintenanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaintenanceService_Service">
+    <End Type="IronMotorsModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="IronMotorsModel.MaintenanceService" Role="MaintenanceService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaintenanceService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaintenanceWorker_Worker">
+    <End Type="IronMotorsModel.Worker" Role="Worker" Multiplicity="1" />
+    <End Type="IronMotorsModel.MaintenanceWorker" Role="MaintenanceWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MaintenanceWorker">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

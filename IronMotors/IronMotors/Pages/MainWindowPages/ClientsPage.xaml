@@ -43,6 +43,8 @@
                                         Binding="{Binding Firstname}" />
                     <DataGridTextColumn Header="Телефон"
                                         Binding="{Binding PhoneNumber}" />
+                    <DataGridTextColumn Header="Скидка клиента"
+                                        Binding="{Binding Discount, StringFormat='{}{0}%'}" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

@@ -25,6 +25,7 @@ namespace IronMotors.Models
         public int CarServiceId { get; set; }
         public int CarId { get; set; }
         public System.DateTime DateTime { get; set; }
+        public decimal Discount { get; set; }
     
         public virtual Car Car { get; set; }
         public virtual CarService CarService { get; set; }

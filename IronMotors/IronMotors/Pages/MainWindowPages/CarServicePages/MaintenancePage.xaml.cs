@@ -91,6 +91,7 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             }
 
             contextMaintenance.DateTime = selectedDate.Value.Add((TimeSpan)selectedTime);
+            contextMaintenance.Discount = contextMaintenance.Car.Client.Discount;
             App.DB.Maintenance.Add(contextMaintenance);
             App.DB.MaintenanceService.AddRange(services);
             App.DB.MaintenanceWorker.AddRange(appointedWorkers);

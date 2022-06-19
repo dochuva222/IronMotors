@@ -12,7 +12,17 @@ namespace IronMotors.Models
         {
             get
             {
-                return MaintenanceService.Sum(m => m.Service.Price);
+                if (this.Car.Client.Discount != 0)
+                {
+                    var serviceSum = this.MaintenanceService.Sum(m => m.Service.Price);
+                    var discountSum = (decimal)((double)this.Discount * 0.01);
+                    var finishSum = serviceSum * discountSum;
+                    return serviceSum - finishSum;
+                }
+                else
+                {
+                    return this.MaintenanceService.Sum(m => m.Service.Price);
+                }
             }
         }
     }

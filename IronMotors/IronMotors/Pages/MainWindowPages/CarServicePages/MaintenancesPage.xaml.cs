@@ -1,4 +1,5 @@
 ﻿using IronMotors.Models;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes; 
+using System.Windows.Shapes;
 
 namespace IronMotors.Pages.MainWindowPages.CarServicePages
 {
-    /// <summary>
-    /// Interaction logic for MaintenancesPage.xaml
-    /// </summary>
-    public partial class MaintenancesPage : Page
+    public partial class MaintenancesPage : System.Windows.Controls.Page
     {
         CarService contextCarService;
         public MaintenancesPage(CarService carService)
         {
             InitializeComponent();
             contextCarService = carService;
-            if(App.LoggedAdmin == null)
+            if (App.LoggedAdmin == null)
             {
                 BCreateMaintenance.Visibility = Visibility.Collapsed;
             }
@@ -84,6 +82,32 @@ namespace IronMotors.Pages.MainWindowPages.CarServicePages
             DPToDate.SelectedDate = null;
             DPFromDate.SelectedDate = null;
             Refresh();
+        }
+
+        private void BPrintCheck_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedMaintenance = (sender as Button).DataContext as Maintenance;
+            if (selectedMaintenance == null)
+                return;
+            var report = new WordReport();
+            var selectedType = ReportType.docx;
+            var dict = new Dictionary<String, String>();
+            dict.Add(nameof(Service.Name), "Название услуги");
+            dict.Add(nameof(Service.Price), "Стоимость");
+
+            report.AddParagraph("IronMotors", WdBuiltinStyle.wdStyleHeader);
+            report.AddParagraph($"Счет для {selectedMaintenance.Car.Client.Fullname}", WdBuiltinStyle.wdStyleBodyText);
+            report.AddParagraph($"Дата и время:  {selectedMaintenance.DateTime}", WdBuiltinStyle.wdStyleBodyText);
+            report.AddParagraph($"Машина {selectedMaintenance.Car.CarFullname}", WdBuiltinStyle.wdStyleBodyText);
+            report.AddParagraph($"Услуги", WdBuiltinStyle.wdStyleBodyText);
+            report.AddTable(selectedMaintenance.MaintenanceService.ToList().Select(c => new
+            {
+                c.Service.Name,
+                c.Service.Price
+            }).ToList(), dict);
+            report.AddParagraph($"Скидка постоянного клиента: {selectedMaintenance.Discount} %", WdBuiltinStyle.wdStyleBodyText);
+            report.AddParagraph($"Итоговая сумма: {selectedMaintenance.ServiceSum}", WdBuiltinStyle.wdStyleBodyText);
+            report.SaveReport(selectedType);
         }
     }
 }

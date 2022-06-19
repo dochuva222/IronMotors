@@ -51,14 +51,20 @@
                                         DisplayMemberBinding="{Binding Car.Client.Fullname}" />
                         <GridViewColumn Header="Сумма"
                                         DisplayMemberBinding="{Binding ServiceSum}" />
+                        <GridViewColumn Header="Скидка"
+                                        DisplayMemberBinding="{Binding Discount, StringFormat='{}{0}%'}" />
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
                                         <Button x:Name="BAbout"
                                                 Content="Подробнее"
                                                 Click="BAbout_Click"
-                                                Margin="0,0,0,10" />
+                                                Margin="0,0,10,10" />
+                                        <Button x:Name="BPrintCheck"
+                                                Content="Распечатать чек"
+                                                Click="BPrintCheck_Click"
+                                                Margin="0,0,10,10"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

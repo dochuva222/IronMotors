@@ -71,6 +71,7 @@
           <Property Name="CarServiceId" Type="int" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="MaintenanceService">
           <Key>
@@ -94,7 +95,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CarBrandId" Type="int" Nullable="false" />
+          <Property Name="CarBrandId" Type="int" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -233,7 +234,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MaintenanceWorker_Maintenance">
-          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="1" />
+          <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MaintenanceWorker" Type="Self.MaintenanceWorker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Maintenance">
@@ -257,7 +260,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Model_CarBrand">
-          <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="1" />
+          <End Role="CarBrand" Type="Self.CarBrand" Multiplicity="0..1" />
           <End Role="Model" Type="Self.Model" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarBrand">
@@ -269,7 +272,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceOrder_Car">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Car">
@@ -281,7 +286,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceOrder_CarService">
-          <End Role="CarService" Type="Self.CarService" Multiplicity="1" />
+          <End Role="CarService" Type="Self.CarService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarService">
@@ -293,7 +300,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_CarService">
-          <End Role="CarService" Type="Self.CarService" Multiplicity="1" />
+          <End Role="CarService" Type="Self.CarService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarService">
@@ -533,6 +542,7 @@
           <Property Name="CarServiceId" Type="Int32" Nullable="false" />
           <Property Name="CarId" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_ServiceOrder_Car" FromRole="Maintenance" ToRole="Car" />
           <NavigationProperty Name="CarService" Relationship="IronMotorsModel.FK_ServiceOrder_CarService" FromRole="Maintenance" ToRole="CarService" />
           <NavigationProperty Name="MaintenanceService" Relationship="IronMotorsModel.FK_MaintenanceService_Maintenance" FromRole="Maintenance" ToRole="MaintenanceService" />
@@ -564,7 +574,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CarBrandId" Type="Int32" Nullable="false" />
+          <Property Name="CarBrandId" Type="Int32" />
           <NavigationProperty Name="Car" Relationship="IronMotorsModel.FK_Car_Model" FromRole="Model" ToRole="Car" />
           <NavigationProperty Name="CarBrand" Relationship="IronMotorsModel.FK_Model_CarBrand" FromRole="Model" ToRole="CarBrand" />
         </EntityType>
@@ -674,7 +684,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceOrder_Car">
-          <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1" />
+          <End Type="IronMotorsModel.Car" Role="Car" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Car">
@@ -686,7 +698,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Model_CarBrand">
-          <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="1" />
+          <End Type="IronMotorsModel.CarBrand" Role="CarBrand" Multiplicity="0..1" />
           <End Type="IronMotorsModel.Model" Role="Model" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarBrand">
@@ -698,7 +710,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceOrder_CarService">
-          <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1" />
+          <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarService">
@@ -710,7 +724,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Worker_CarService">
-          <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1" />
+          <End Type="IronMotorsModel.CarService" Role="CarService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="IronMotorsModel.Worker" Role="Worker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarService">
@@ -746,7 +762,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MaintenanceWorker_Maintenance">
-          <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1" />
+          <End Type="IronMotorsModel.Maintenance" Role="Maintenance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="IronMotorsModel.MaintenanceWorker" Role="MaintenanceWorker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Maintenance">
@@ -781,7 +799,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -855,6 +873,7 @@
           <EntitySetMapping Name="Maintenance">
             <EntityTypeMapping TypeName="IronMotorsModel.Maintenance">
               <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CarServiceId" ColumnName="CarServiceId" />
