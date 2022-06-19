@@ -65,6 +65,8 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,6 +79,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -153,6 +156,9 @@
     <Compile Include="Models\Worker.cs">
       <DependentUpon>IronMotorsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainWindowPages\CarServiceChart.xaml.cs">
+      <DependentUpon>CarServiceChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainWindowPages\CarServicePages\MaintenancesPage.xaml.cs">
       <DependentUpon>MaintenancesPage.xaml</DependentUpon>
     </Compile>
@@ -210,6 +216,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\LoginWindowPages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindowPages\CarServiceChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

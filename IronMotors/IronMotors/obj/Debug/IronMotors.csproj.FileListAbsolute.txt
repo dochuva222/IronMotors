@@ -64,3 +64,5 @@ D:\Работа\IronMotors\IronMotors\IronMotors\obj\Debug\IronMotors.pdb
 D:\Работа\IronMotors\IronMotors\IronMotors\obj\Debug\IronMotors.csproj.ResolveComReference.cache
 D:\Работа\IronMotors\IronMotors\IronMotors\bin\Debug\Microsoft.Office.Interop.Word.dll
 D:\Работа\IronMotors\IronMotors\IronMotors\bin\Debug\stdole.dll
+D:\Работа\IronMotors\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\CarServiceChart.g.cs
+D:\Работа\IronMotors\IronMotors\IronMotors\obj\Debug\Pages\MainWindowPages\CarServiceChart.baml

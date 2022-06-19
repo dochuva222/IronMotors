@@ -69,5 +69,13 @@ namespace IronMotors.Pages.MainWindowPages.DirectorPages
                 return;
             NavigationService.Navigate(new MaintenancesPage(selectedCarService));
         }
+
+        private void Statistics_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCarService = LVCarServices.SelectedItem as CarService;
+            if (selectedCarService == null)
+                return;
+            NavigationService.Navigate(new CarServiceChart(selectedCarService));
+        }
     }
 }

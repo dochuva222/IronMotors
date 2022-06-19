@@ -34,6 +34,8 @@
                               Click="AdministartorAppoint_Click" />
                     <MenuItem Header="Заявки"
                               Click="Maintenances_Click" />
+                    <MenuItem Header="Статистика"
+                              Click="Statistics_Click" />
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.ItemTemplate>
